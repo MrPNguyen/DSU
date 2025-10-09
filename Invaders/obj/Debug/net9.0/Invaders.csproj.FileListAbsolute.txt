@@ -162,7 +162,6 @@ C:\Users\yetre\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.pdb
 C:\Users\yetre\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.genruntimeconfig.cache
 C:\Users\yetre\RiderProjects\DSU\Invaders\obj\Debug\net9.0\ref\Invaders.dll
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\Invaders.exe
-C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\level1.txt
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\tileset.png
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\PressStart2P.ttf
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\Invaders.deps.json
@@ -243,3 +242,4 @@ C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\refint\Invaders.dl
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.pdb
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.genruntimeconfig.cache
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\ref\Invaders.dll
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\explosion.png
