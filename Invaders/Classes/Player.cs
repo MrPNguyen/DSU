@@ -13,7 +13,7 @@ namespace Invaders.Classes
 
         public Player() : base("tileset")
         {
-            sprite.TextureRect = new IntRect(0, 128, 64, 64);
+            sprite.TextureRect = new IntRect(192, 128, 64, 64);
             sprite.Origin = new Vector2f(9, 9);
         }
 

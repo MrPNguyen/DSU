@@ -8,7 +8,7 @@ namespace Invaders.Classes
     public class Scene
     {
         private Dictionary<string, Texture> textures;
-        private List<Entity> entities;
+        public List<Entity> entities;
         public string nextScene;
         public string currentScene;
         public Entity entity;
