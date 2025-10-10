@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using SFML.Graphics;
 using SFML.System;
+using SFML.Audio;
 
 namespace Invaders.Classes
 {
@@ -8,6 +9,7 @@ namespace Invaders.Classes
     {
         private readonly string textureName;
         protected readonly Sprite sprite;
+        protected readonly Sound sounds;
         public bool Dead;
         public bool DontDestroyOnLoad;
         public virtual bool Solid => false;
@@ -16,6 +18,7 @@ namespace Invaders.Classes
         {
             this.textureName = textureName;
             sprite = new Sprite();
+            sounds = new Sound();
         }
 
         public Vector2f Position

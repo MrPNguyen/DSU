@@ -243,3 +243,10 @@ C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.pdb
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.genruntimeconfig.cache
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\ref\Invaders.dll
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\explosion.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Nebula Blue.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Nebula Red.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars Small_1.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars Small_2.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars-Big_1_1_PC.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars-Big_1_2_PC.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Nebula.png

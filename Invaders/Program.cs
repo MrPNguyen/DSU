@@ -16,14 +16,16 @@ namespace Invaders
                 window.Closed += (o, e) => window.Close();
                 Clock clock = new Clock();
                 Scene scene = new Scene(new AssetManager(), new EventManager());
-                Player player = new Player();
+                scene.Spawn(new Background());
+                scene.Spawn(new Player());
+                scene.Spawn(new Enemy());
                 while (window.IsOpen) {
                     window.DispatchEvents();
                     float deltaTime = clock.Restart().AsSeconds();
                     deltaTime = MathF.Min(deltaTime, 0.01f);
-                    player.Update(scene, deltaTime);
-                    window.Clear(new Color(0, 0, 0));
-                    player.Draw(window);
+                    scene.UpdateAll(deltaTime);
+                    window.Clear();
+                    scene.RenderAll(window);
                     window.Display();
                 }
             }

@@ -32,4 +32,11 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
     </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="assets/*.wav" />
+        <EmbeddedResource Include="assets/*.wav">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
 </Project>

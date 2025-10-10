@@ -10,16 +10,20 @@ namespace Invaders.Classes
         public List<Entity> entities;
         public readonly AssetManager Assets;
         public readonly EventManager Events;
+        public float spawnTimer = 0.0f;
+        public float spawnCooldown = 7.0f;
         
         public Scene(AssetManager assets, EventManager events)
         {
             entities = new List<Entity>();
             Assets = assets;
             Events = events;
+            events.SpawnBullet += SpawnBullet; 
         }
 
         public void Spawn(Entity entity)
         {
+            spawnTimer = spawnCooldown;
             entities.Add(entity);
             entity.Create(this);
         }
@@ -40,10 +44,16 @@ namespace Invaders.Classes
 
         public void UpdateAll(float deltaTime)
         {
+            spawnTimer -= deltaTime;
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Entity entity = entities[i];
                 entity.Update(this, deltaTime);
+                if (spawnTimer <= 0.0f)
+                {
+                    Enemy enemy = new Enemy();
+                    Spawn(enemy);
+                }
             }
         }
 
@@ -57,7 +67,7 @@ namespace Invaders.Classes
                 entity.Render(target);
             }
         }
-
+        
         public bool FindByType<T>(out T found) where T : Entity
         {
             foreach (Entity entity in entities)
@@ -84,6 +94,11 @@ namespace Invaders.Classes
                     yield return entity;
                 }
             }
+        }
+
+        private void SpawnBullet(Vector2f pos, float Y, Scene scene)
+        {
+            Bullet bullet = new Bullet();
         }
     }
 }
