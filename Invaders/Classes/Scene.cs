@@ -20,6 +20,7 @@ namespace Invaders.Classes
 
         public void Spawn(Entity entity)
         {
+            
             entities.Add(entity);
             entity.Create(this);
         }
@@ -57,7 +58,7 @@ namespace Invaders.Classes
                 entity.Render(target);
             }
         }
-
+        
         public bool FindByType<T>(out T found) where T : Entity
         {
             foreach (Entity entity in entities)
