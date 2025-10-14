@@ -16,9 +16,7 @@ namespace Invaders
                 window.Closed += (o, e) => window.Close();
                 Clock clock = new Clock();
                 Scene scene = new Scene(new AssetManager(), new EventManager());
-                scene.Spawn(new Background());
-                scene.Spawn(new Player());
-                scene.Spawn(new Enemy());
+                scene.SpawnAll();
                 while (window.IsOpen) {
                     window.DispatchEvents();
                     float deltaTime = clock.Restart().AsSeconds();

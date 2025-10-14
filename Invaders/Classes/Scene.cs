@@ -11,7 +11,7 @@ namespace Invaders.Classes
         public readonly AssetManager Assets;
         public readonly EventManager Events;
         public float spawnTimer = 0.0f;
-        public float spawnCooldown = 7.0f;
+        public float spawnCooldown = 6.0f;
         
         public Scene(AssetManager assets, EventManager events)
         {
@@ -45,6 +45,7 @@ namespace Invaders.Classes
         public void UpdateAll(float deltaTime)
         {
             spawnTimer -= deltaTime;
+            Events.Update(this);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Entity entity = entities[i];
@@ -66,6 +67,14 @@ namespace Invaders.Classes
                 else i++;
                 entity.Render(target);
             }
+        }
+
+        public void SpawnAll()
+        {
+            Spawn(new Background());
+            Spawn(new Player());
+            Spawn(new Enemy());
+            Spawn(new Gui());
         }
         
         public bool FindByType<T>(out T found) where T : Entity
@@ -98,7 +107,22 @@ namespace Invaders.Classes
 
         private void SpawnBullet(Vector2f pos, float Y, Scene scene)
         {
-            Bullet bullet = new Bullet();
+            if (Y == -1)
+            {
+                pos.X += 1.0f;
+                Bullet bullet1 = new Bullet(pos, Y);
+                Spawn(bullet1);
+                
+                pos.X -= 35.0f;
+                Bullet bullet2 = new Bullet(pos, Y);
+                Spawn(bullet2);
+            }
+            else if (Y == 1)
+            {
+                pos.X += 19.0f;
+                Bullet bullet = new Bullet(pos, Y);
+                Spawn(bullet);
+            }
         }
     }
 }

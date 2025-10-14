@@ -48,7 +48,10 @@ namespace Invaders.Classes
 
         public virtual void Render(RenderTarget target)
         {
-            target.Draw(sprite);
+            if (!Dead)
+            {
+                target.Draw(sprite);
+            }
         }
         protected virtual void CollideWith(Scene s, Entity other) {}
     }

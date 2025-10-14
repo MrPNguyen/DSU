@@ -250,3 +250,4 @@ C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars Small
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars-Big_1_1_PC.png
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars-Big_1_2_PC.png
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Nebula.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\pacman.png

@@ -16,7 +16,10 @@ namespace Invaders.Classes
 
         protected void Reset()
         {
-            
+            //TODO: scene.entities.clear(of type enemy)
+            //TOOD: player originalposition
+            //TODO: score == 0;
+            //TODO: health == 3;
         }
         protected static Vector2f ToVector(int dir) 
         {

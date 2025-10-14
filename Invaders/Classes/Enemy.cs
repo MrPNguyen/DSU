@@ -20,7 +20,7 @@ namespace Invaders.Classes
         public const float BulletSpeed = 200f;
         public Enemy()
         {
-            sprite.TextureRect = new IntRect(128,128, 64, 64);
+            sprite.TextureRect = new IntRect(320,256, 64, 64);
             sprite.Origin = new Vector2f(32, 32);
             size = new Vector2f(
                 sprite.GetGlobalBounds().Width, sprite.GetGlobalBounds().Height);
@@ -37,6 +37,7 @@ namespace Invaders.Classes
 
         public override void Update(Scene scene, float deltaTime)
         {
+            base.Update(scene, deltaTime);
             ShotCooldown -= deltaTime;
             if (ShotCooldown < 0)
             {
@@ -66,7 +67,13 @@ namespace Invaders.Classes
             sprite.Position = newPos;
             if (ShotCooldown == 0)
             {
-                Shoot(scene, deltaTime);
+                
+                scene.Events.PublishSpawnBullet(newPos, 1, scene);
+                if (ShotCooldown > 0)
+                {
+                    return;
+                }
+                ShotCooldown = 2.0f;
             }
         }
         
@@ -77,14 +84,16 @@ namespace Invaders.Classes
                 direction.Y * normal.Y
             ));
         }
-        
-        public void Shoot(Scene scene, float deltaTime)
+
+        protected override void CollideWith(Scene scene, Entity e)
         {
-            if (ShotCooldown > 0)
+            if (e is Bullet bullet &&  bullet.Y == -1)
             {
-                return;
+                Console.WriteLine("!");
+                Dead = true;
+                scene.Events.PublishGainScore(100, scene);
+                bullet.Dead = true;
             }
-            ShotCooldown = 2.0f;
         }
     }
 }
