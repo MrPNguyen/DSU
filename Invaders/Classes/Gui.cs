@@ -9,9 +9,9 @@ namespace Invaders.Classes
     {
         private Text scoreText;
         public Text highscoreText;
-        private int maxHealth = 3;
-        private int currentHealth;
-        private float currentScore;
+        public int maxHealth = 3;
+        public int currentHealth;
+        public float currentScore;
         public int highScore;
         private Font font;
         //private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
@@ -35,10 +35,21 @@ namespace Invaders.Classes
             scoreText.CharacterSize = 23;
             //highscoreText.CharacterSize = 12;
             currentHealth = maxHealth;
-            scene.Events.LoseHealth +=OnLoseHealth;
             scene.Events.GainScore += OnScoreGain;
+            scene.Events.LoseHealth += OnLoseHealth;
             //LoadhighScore();
-      
+
+        }
+        
+        private void OnLoseHealth(int amount, Scene scene)
+        {
+            currentHealth -= amount;
+            if (currentHealth <= 0)
+            {
+                DontDestroyOnLoad = false;
+                scene.LoseGame = true;
+                Console.WriteLine(scene.LoseGame);
+            }
         }
         public override void Render(RenderTarget target)
         {
@@ -63,14 +74,7 @@ namespace Invaders.Classes
             target.Draw(scoreText);
             //target.Draw(highscoreText);
         }
-        private void OnLoseHealth(int amount, Scene scene)
-        {
-            currentHealth -= amount;
-            if (currentHealth <= 0)
-            {
-                DontDestroyOnLoad = false;
-            }
-        }
+        
         private void OnScoreGain(int value, Scene scene)
         {
             currentScore += 100;

@@ -89,7 +89,6 @@ namespace Invaders.Classes
         {
             if (e is Bullet bullet &&  bullet.Y == -1)
             {
-                Console.WriteLine("!");
                 Dead = true;
                 scene.Events.PublishGainScore(100, scene);
                 bullet.Dead = true;

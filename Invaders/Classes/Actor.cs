@@ -8,19 +8,19 @@ namespace Invaders.Classes
     public class Actor : Entity
     {
         protected int direction;
+        public float speed;
+        public Vector2f originalPosition;
+        public float originalSpeed;
+        private Gui gui;
+        public bool waitingForSpace = false;
+
        
         protected Actor() : base("tileset")
         {
+            gui = new Gui();
+            
+        }
         
-        }
-
-        protected void Reset()
-        {
-            //TODO: scene.entities.clear(of type enemy)
-            //TOOD: player originalposition
-            //TODO: score == 0;
-            //TODO: health == 3;
-        }
         protected static Vector2f ToVector(int dir) 
         {
             switch (dir)    
@@ -37,6 +37,11 @@ namespace Invaders.Classes
             FloatRect rect = new FloatRect(at.X, at.Y, 1, 1);
             return !scene.FindIntersects(rect).Any(e => e.Solid);
         }
+        
+        public override void Create(Scene scene)
+        {
+            base.Create(scene);
+        }
         protected virtual int PickDirection(Scene scene) { return 0; }
 
         public void ApplyHit()
@@ -46,11 +51,8 @@ namespace Invaders.Classes
 
         public override void Update(Scene scene, float deltaTime)
         {
-            base.Update(scene, deltaTime);
             direction = PickDirection(scene);
+            base.Update(scene, deltaTime);
         }
-        
-       
     }
 }
-

@@ -16,10 +16,13 @@ namespace Invaders.Classes
         private const float invulnerableDuration = 2.0f; // 4 seconds
         public Color normalColor;
         public Sprite Contrail;
+        public Vector2f PlayerSpawn;
+        public bool ableToShoot;
         public Player()
         {
             sprite.TextureRect = new IntRect(192, 128, 64, 64);
             sprite.Origin = new Vector2f(32, 32);
+            PlayerSpawn = new Vector2f(230, 570);
             size = new Vector2f(
                 sprite.GetGlobalBounds().Width, sprite.GetGlobalBounds().Height);
             normalColor = sprite.Color;
@@ -30,18 +33,18 @@ namespace Invaders.Classes
         public override void Create(Scene scene)
         {
             base.Create(scene);
-            sprite.Position = new Vector2f(230, 570);
-            scene.Events.LoseHealth += OnLoseHealth;
+            sprite.Position = PlayerSpawn;
+            originalPosition = PlayerSpawn;
+            if (scene.LoseGame)
+            {
+                sprite.Position = PlayerSpawn;
+            }
             // TODO: CONTRAIL
         }
-        private void OnLoseHealth(int value, Scene scene1)
-        {
-            Reset();
-        }
+        
         public override void Destroy(Scene scene)
         {
             base.Destroy(scene);
-            scene.Events.LoseHealth -= OnLoseHealth;
         }
         public override void Update(Scene scene, float deltaTime)
         {
@@ -64,21 +67,32 @@ namespace Invaders.Classes
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
                 newPos.X += deltaTime * FlyingSpeed;
+                sprite.Rotation = 45.0f;
+                ableToShoot = false;
             }
-
-            if (Keyboard.IsKeyPressed(Keyboard.Key.A)  || Keyboard.IsKeyPressed(Keyboard.Key.Left))
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.A)  || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
                 newPos.X -= deltaTime * FlyingSpeed;
+                sprite.Rotation = -45.0f;
+                ableToShoot = false;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.W)  || Keyboard.IsKeyPressed(Keyboard.Key.Up))
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.W)  || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
                 newPos.Y -= deltaTime * FlyingSpeed;
+                sprite.Rotation = 360.0f;
+                ableToShoot = true;
             }
-            if (Keyboard.IsKeyPressed(Keyboard.Key.S)  || Keyboard.IsKeyPressed(Keyboard.Key.Down))
+            else if (Keyboard.IsKeyPressed(Keyboard.Key.S)  || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
                 newPos.Y += deltaTime * FlyingSpeed;
+                sprite.Rotation = 180.0f;
+                ableToShoot = false;
             }
-
+            else
+            {
+                sprite.Rotation = 360.0f;
+            }
+            
             float halfWidth = size.X / 2; //splittra center för att göra hitbox "större"
 
             if (newPos.X >= Program.ScreenW - halfWidth)
@@ -103,14 +117,17 @@ namespace Invaders.Classes
             
             if (Keyboard.IsKeyPressed(Keyboard.Key.E))
             {
-                if (ShotCooldown == 0)
+                if (ableToShoot)
                 {
-                    scene.Events.PublishSpawnBullet(newPos, -1, scene);
-                    if (ShotCooldown > 0)
+                    if (ShotCooldown == 0)
                     {
-                        return;
+                        scene.Events.PublishSpawnBullet(newPos, -1, scene);
+                        if (ShotCooldown > 0)
+                        {
+                            return;
+                        }
+                        ShotCooldown = 0.5f;
                     }
-                    ShotCooldown = 0.5f;
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace Invaders.Classes
         public readonly EventManager Events;
         public float spawnTimer = 0.0f;
         public float spawnCooldown = 6.0f;
-        
+        public bool LoseGame = false;
         public Scene(AssetManager assets, EventManager events)
         {
             entities = new List<Entity>();
@@ -71,12 +71,18 @@ namespace Invaders.Classes
 
         public void SpawnAll()
         {
-            Spawn(new Background());
-            Spawn(new Player());
-            Spawn(new Enemy());
-            Spawn(new Gui());
+            if (!LoseGame)
+            {
+                Spawn(new Background());
+                Spawn(new Player());
+                Spawn(new Enemy());
+                Spawn(new Gui());
+            }
+            else
+            {
+                Spawn(new Player());
+            }
         }
-        
         public bool FindByType<T>(out T found) where T : Entity
         {
             foreach (Entity entity in entities)
