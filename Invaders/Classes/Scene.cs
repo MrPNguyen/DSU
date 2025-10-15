@@ -10,20 +10,21 @@ namespace Invaders.Classes
         public List<Entity> entities;
         public readonly AssetManager Assets;
         public readonly EventManager Events;
-        public float spawnTimer = 0.0f;
-        public float spawnCooldown = 6.0f;
-        public bool LoseGame = false;
-        public Scene(AssetManager assets, EventManager events)
+        public readonly SceneLoader Loader;
+        public bool GameLost;
+       
+        public Scene(AssetManager assets, EventManager events, SceneLoader loader)
         {
             entities = new List<Entity>();
             Assets = assets;
             Events = events;
+            Loader = loader;
             events.SpawnBullet += SpawnBullet; 
         }
 
         public void Spawn(Entity entity)
         {
-            spawnTimer = spawnCooldown;
+            Loader.spawnTimer = Loader.spawnCooldown;
             entities.Add(entity);
             entity.Create(this);
         }
@@ -42,19 +43,15 @@ namespace Invaders.Classes
             
         }
 
-        public void UpdateAll(float deltaTime)
+        public void UpdateAll(Scene scene, float deltaTime)
         {
-            spawnTimer -= deltaTime;
+            Loader.spawnTimer -= deltaTime;
             Events.Update(this);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Entity entity = entities[i];
                 entity.Update(this, deltaTime);
-                if (spawnTimer <= 0.0f)
-                {
-                    Enemy enemy = new Enemy();
-                    Spawn(enemy);
-                }
+                Loader.SpawnEnemies(scene);
             }
         }
 
@@ -68,21 +65,7 @@ namespace Invaders.Classes
                 entity.Render(target);
             }
         }
-
-        public void SpawnAll()
-        {
-            if (!LoseGame)
-            {
-                Spawn(new Background());
-                Spawn(new Player());
-                Spawn(new Enemy());
-                Spawn(new Gui());
-            }
-            else
-            {
-                Spawn(new Player());
-            }
-        }
+      
         public bool FindByType<T>(out T found) where T : Entity
         {
             foreach (Entity entity in entities)

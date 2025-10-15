@@ -35,10 +35,7 @@ namespace Invaders.Classes
             base.Create(scene);
             sprite.Position = PlayerSpawn;
             originalPosition = PlayerSpawn;
-            if (scene.LoseGame)
-            {
-                sprite.Position = PlayerSpawn;
-            }
+            sprite.Position = PlayerSpawn;
             // TODO: CONTRAIL
         }
         

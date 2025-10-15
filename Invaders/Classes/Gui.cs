@@ -11,16 +11,13 @@ namespace Invaders.Classes
         public Text highscoreText;
         public int maxHealth = 3;
         public int currentHealth;
-        public float currentScore;
-        public int highScore;
         private Font font;
-        //private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
-        //private static readonly string filePath = Path.Combine(folderPath, "HighScore.txt");
-        
-        public Gui() : base("pacman")
+        private ScoreManager Score;
+        public Gui(ScoreManager score) : base("pacman")
         {
             scoreText = new Text();
             highscoreText = new Text();
+            Score = score;
         }
         
         public override void Create(Scene scene)
@@ -35,8 +32,8 @@ namespace Invaders.Classes
             scoreText.CharacterSize = 23;
             //highscoreText.CharacterSize = 12;
             currentHealth = maxHealth;
-            scene.Events.GainScore += OnScoreGain;
             scene.Events.LoseHealth += OnLoseHealth;
+            //scene.Events.GainScore += Score.OnScoreGain;
             //LoadhighScore();
 
         }
@@ -47,8 +44,8 @@ namespace Invaders.Classes
             if (currentHealth <= 0)
             {
                 DontDestroyOnLoad = false;
-                scene.LoseGame = true;
-                Console.WriteLine(scene.LoseGame);
+                scene.GameLost = true;
+                Console.WriteLine($"Gui Says: {scene.GameLost}");
             }
         }
         public override void Render(RenderTarget target)
@@ -64,7 +61,7 @@ namespace Invaders.Classes
                 sprite.Scale = new Vector2f(3, 3);
             
             }
-            scoreText.DisplayedString = $"Score: {currentScore}";
+            scoreText.DisplayedString = $"Score: {Score.currentScore}";
             //highscoreText.DisplayedString = $"HighScore: {highScore}";
             /* highscoreText.Position = new Vector2f(
                 405 - highscoreText.GetGlobalBounds().Width, 415);*/
@@ -74,20 +71,11 @@ namespace Invaders.Classes
             target.Draw(scoreText);
             //target.Draw(highscoreText);
         }
-        
-        private void OnScoreGain(int value, Scene scene)
-        {
-            currentScore += 100;
-            /*if (currentScore > highScore)
-            {
-                highScore = currentScore;
-                SaveHighScore(currentScore);
-            }*/
-        }
+       
         public override void Update(Scene scene, float deltaTime)
         {
             base.Update(scene, deltaTime);
-            currentScore += (int)Math.Round(deltaTime * 1000);
+            Score.Update(deltaTime);
         }
     }
 }

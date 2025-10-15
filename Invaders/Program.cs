@@ -15,13 +15,14 @@ namespace Invaders
                        new VideoMode(ScreenW, ScreenH), "Invaders")) {
                 window.Closed += (o, e) => window.Close();
                 Clock clock = new Clock();
-                Scene scene = new Scene(new AssetManager(), new EventManager());
-                scene.SpawnAll();
+                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader());
+                scene.Loader.LoadGame(scene);
                 while (window.IsOpen) {
                     window.DispatchEvents();
                     float deltaTime = clock.Restart().AsSeconds();
                     deltaTime = MathF.Min(deltaTime, 0.01f);
-                    scene.UpdateAll(deltaTime);
+                    scene.UpdateAll(scene, deltaTime);
+                    scene.Loader.Reload(scene);
                     window.Clear();
                     scene.RenderAll(window);
                     window.Display();

@@ -11,13 +11,11 @@ namespace Invaders.Classes
         public float speed;
         public Vector2f originalPosition;
         public float originalSpeed;
-        private Gui gui;
         public bool waitingForSpace = false;
 
        
         protected Actor() : base("tileset")
         {
-            gui = new Gui();
             
         }
         
