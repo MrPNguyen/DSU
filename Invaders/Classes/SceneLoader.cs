@@ -1,46 +1,55 @@
-﻿namespace Invaders.Classes
+﻿using SFML.System;
+
+namespace Invaders.Classes
 {
     public class SceneLoader
     {
-        public float spawnTimer = 0.0f;
-        public float spawnCooldown = 6.0f;
+        public float spawnCooldown = 0.0f;
+        public float spawnRate = 0.0f;
         public void LoadGame(Scene scene)
         {
-            scene.GameLost = false;
-            scene.Spawn(new Background());
-            scene.Spawn(new Player());
+            scene.Spawn(new Background(new Vector2f(0,0), "Nebula"));
+            scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue"));
             scene.Spawn(new Enemy());
             scene.Spawn(new Gui(new ScoreManager()));
+            scene.Spawn(new Player());
+            scene.GameLost = false;
         }
 
         public void Reload(Scene scene)
         {
-            Console.WriteLine(scene.GameLost);
             if (scene.GameLost)
             {
-                scene.entities.Clear();
-                scene.Spawn(new Background());
-                scene.Spawn(new Player());
-                scene.Spawn(new Enemy());
-                scene.Spawn(new Gui(new ScoreManager()));
+                scene.Clear();
+                LoadGame(scene);
+                scene.GameLost = false;
             }
         }
         public void SpawnEnemies(Scene scene)
         {
-            if (spawnTimer <= 0.0f)
+            if (spawnCooldown <= 0)
             {
                 Enemy enemy = new Enemy();
                 scene.Spawn(enemy);
             }
+            if (spawnCooldown > 0)
+            {
+                return;
+            }
+            spawnCooldown = 9.0f;
         }
 
-        public void Update(Scene scene, float deltaTime)
+        public void IncreaseSpawnRate()
         {
-            if (scene.GameLost)
+            if (spawnRate <= 0)
             {
-                Reload(scene);
+                spawnCooldown--;
             }
-            //TODO: Figure out how to reload entites once through gamelost flag
+            if (spawnRate > 0 || spawnCooldown <= 2)
+            {
+                return;
+            }
+            spawnRate = 50.0f;
         }
     }
 }

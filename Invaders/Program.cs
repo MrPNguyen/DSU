@@ -22,7 +22,6 @@ namespace Invaders
                     float deltaTime = clock.Restart().AsSeconds();
                     deltaTime = MathF.Min(deltaTime, 0.01f);
                     scene.UpdateAll(scene, deltaTime);
-                    scene.Loader.Reload(scene);
                     window.Clear();
                     scene.RenderAll(window);
                     window.Display();

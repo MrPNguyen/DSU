@@ -45,7 +45,6 @@ namespace Invaders.Classes
             {
                 DontDestroyOnLoad = false;
                 scene.GameLost = true;
-                Console.WriteLine($"Gui Says: {scene.GameLost}");
             }
         }
         public override void Render(RenderTarget target)

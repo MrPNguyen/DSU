@@ -10,10 +10,11 @@ public class ScoreManager
     public int currentScore;
     private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
     private static readonly string filePath = Path.Combine(folderPath, "HighScore.txt");
-
+    private Clock ScoreClock;
+    
     public ScoreManager()
     {
-        
+        ScoreClock = new Clock();
     }
     private void SaveHighScore(int score)
     {
@@ -70,6 +71,10 @@ public class ScoreManager
 
     public void Update(float deltaTime)
     {
-        currentScore += (int)Math.Round(deltaTime * 1000);
+        if (ScoreClock.ElapsedTime.AsSeconds() >= 1)
+        {
+            currentScore++;
+            ScoreClock.Restart();
+        }
     }
 }

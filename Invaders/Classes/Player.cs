@@ -8,16 +8,16 @@ namespace Invaders.Classes
 {
     public class Player : Actor
     {
-        public const float FlyingSpeed = 100.0f;
         public float ShotCooldown = 0f;
         public Vector2f size;
         private bool isInvulnerable= false;
         private float invulnerableTimer = 0.0f;
         private const float invulnerableDuration = 2.0f; // 4 seconds
         public Color normalColor;
-        public Sprite Contrail;
         public Vector2f PlayerSpawn;
         public bool ableToShoot;
+        private Vector2f newPos;
+        private Contrail contrail;
         public Player()
         {
             sprite.TextureRect = new IntRect(192, 128, 64, 64);
@@ -26,8 +26,9 @@ namespace Invaders.Classes
             size = new Vector2f(
                 sprite.GetGlobalBounds().Width, sprite.GetGlobalBounds().Height);
             normalColor = sprite.Color;
-            Contrail = new Sprite();
-            Contrail.TextureRect = new IntRect(384, 384, 64, 64);
+            speed = 100.0f;
+            newPos = new Vector2f();
+            contrail = new Contrail(PlayerSpawn, newPos);
         }
 
         public override void Create(Scene scene)
@@ -35,14 +36,8 @@ namespace Invaders.Classes
             base.Create(scene);
             sprite.Position = PlayerSpawn;
             originalPosition = PlayerSpawn;
-            sprite.Position = PlayerSpawn;
-            // TODO: CONTRAIL
         }
         
-        public override void Destroy(Scene scene)
-        {
-            base.Destroy(scene);
-        }
         public override void Update(Scene scene, float deltaTime)
         {
             base.Update(scene, deltaTime);
@@ -60,28 +55,29 @@ namespace Invaders.Classes
             {
                 ShotCooldown = 0;
             }
-            Vector2f newPos = sprite.Position;
+            newPos = sprite.Position;
             if (Keyboard.IsKeyPressed(Keyboard.Key.D) || Keyboard.IsKeyPressed(Keyboard.Key.Right))
             {
-                newPos.X += deltaTime * FlyingSpeed;
+                newPos.X += deltaTime * speed;
                 sprite.Rotation = 45.0f;
                 ableToShoot = false;
+                contrail.newPos.X += deltaTime * speed;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.A)  || Keyboard.IsKeyPressed(Keyboard.Key.Left))
             {
-                newPos.X -= deltaTime * FlyingSpeed;
+                newPos.X -= deltaTime * speed;
                 sprite.Rotation = -45.0f;
                 ableToShoot = false;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.W)  || Keyboard.IsKeyPressed(Keyboard.Key.Up))
             {
-                newPos.Y -= deltaTime * FlyingSpeed;
+                newPos.Y -= deltaTime * speed;
                 sprite.Rotation = 360.0f;
                 ableToShoot = true;
             }
             else if (Keyboard.IsKeyPressed(Keyboard.Key.S)  || Keyboard.IsKeyPressed(Keyboard.Key.Down))
             {
-                newPos.Y += deltaTime * FlyingSpeed;
+                newPos.Y += deltaTime * speed;
                 sprite.Rotation = 180.0f;
                 ableToShoot = false;
             }
@@ -127,6 +123,8 @@ namespace Invaders.Classes
                     }
                 }
             }
+            scene.Spawn(contrail);
+            contrail.Update(scene, deltaTime);
         }
         
         protected override void CollideWith(Scene scene, Entity e)

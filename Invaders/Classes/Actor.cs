@@ -12,6 +12,7 @@ namespace Invaders.Classes
         public Vector2f originalPosition;
         public float originalSpeed;
         public bool waitingForSpace = false;
+        protected bool moving;
 
        
         protected Actor() : base("tileset")
@@ -51,6 +52,15 @@ namespace Invaders.Classes
         {
             direction = PickDirection(scene);
             base.Update(scene, deltaTime);
+            if (waitingForSpace)
+            {
+                // Ball is paused, only check for space press
+                if (Keyboard.IsKeyPressed(Keyboard.Key.Space))
+                {
+                    waitingForSpace = false;
+                }
+                return;
+            }
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Invaders.Classes
 
         public void Spawn(Entity entity)
         {
-            Loader.spawnTimer = Loader.spawnCooldown;
             entities.Add(entity);
             entity.Create(this);
         }
@@ -45,14 +44,26 @@ namespace Invaders.Classes
 
         public void UpdateAll(Scene scene, float deltaTime)
         {
-            Loader.spawnTimer -= deltaTime;
+            Loader.spawnCooldown -= deltaTime;
+            Loader.spawnRate -= deltaTime;
+            if (Loader.spawnCooldown < 0)
+            {
+                Loader.spawnCooldown = 0;
+            }
+
+            if (Loader.spawnRate < 0)
+            {
+                Loader.spawnRate = 0;
+            }
             Events.Update(this);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Entity entity = entities[i];
                 entity.Update(this, deltaTime);
-                Loader.SpawnEnemies(scene);
             }
+            Loader.SpawnEnemies(scene);
+            Loader.Reload(scene);
+            Loader.IncreaseSpawnRate();
         }
 
         public void RenderAll(RenderTarget target)

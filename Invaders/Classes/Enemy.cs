@@ -8,16 +8,15 @@ namespace Invaders.Classes
 {
     public class Enemy : Actor
     {
-        public const float EnemySpeed = 50.0f;
         public Vector2f size;
         private Random rand;
         private float spawnPoint;
-        public Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(EnemySpeed);
+        public Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
         private Vector2f SpawnPos;
-        private float ShotTimer;
-        private float ShotDuration;
         public float ShotCooldown = 0f;
-        public const float BulletSpeed = 200f;
+        private Explosion explosion;
+        Vector2f newPos;
+
         public Enemy()
         {
             sprite.TextureRect = new IntRect(320,256, 64, 64);
@@ -27,10 +26,13 @@ namespace Invaders.Classes
             rand = new Random();
             sprite.Scale = new Vector2f(0.7f, 0.7f);
             sprite.Rotation = 180.0f;
+            speed = 30.0f;
+            explosion = new Explosion(newPos);
         }
         public override void Create(Scene scene)
         {
             base.Create(scene);
+            moving = true;
             spawnPoint = rand.Next(0, 500);
             SpawnPos = sprite.Position = new Vector2f(spawnPoint, -15);
         }
@@ -43,8 +45,8 @@ namespace Invaders.Classes
             {
                 ShotCooldown = 0;
             }
-            Vector2f newPos = sprite.Position;
-            newPos += direction * deltaTime * 100.0f; 
+            newPos = sprite.Position;
+            newPos += direction * deltaTime * speed; 
             
             float halfWidth = size.X / 2; //splittra center för att göra hitbox "större"
             if (newPos.X > Program.ScreenW - halfWidth) //Right side
@@ -67,13 +69,14 @@ namespace Invaders.Classes
             sprite.Position = newPos;
             if (ShotCooldown == 0)
             {
-                
                 scene.Events.PublishSpawnBullet(newPos, 1, scene);
                 if (ShotCooldown > 0)
                 {
                     return;
                 }
                 ShotCooldown = 2.0f;
+
+               
             }
         }
         
@@ -92,6 +95,8 @@ namespace Invaders.Classes
                 Dead = true;
                 scene.Events.PublishGainScore(100, scene);
                 bullet.Dead = true;
+                Explosion explosion = new Explosion(new Vector2f(sprite.Position.X-50f, sprite.Position.Y-25));
+                scene.Spawn(explosion);
             }
         }
     }
