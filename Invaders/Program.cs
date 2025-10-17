@@ -9,9 +9,10 @@ namespace Invaders
     {
         public const int ScreenW = 500;
         public const int ScreenH = 700;
+        public static RenderWindow window;
         
         static void Main(string[] args) {
-            using (var window = new RenderWindow(
+            using ( window = new RenderWindow(
                        new VideoMode(ScreenW, ScreenH), "Invaders")) {
                 window.Closed += (o, e) => window.Close();
                 Clock clock = new Clock();

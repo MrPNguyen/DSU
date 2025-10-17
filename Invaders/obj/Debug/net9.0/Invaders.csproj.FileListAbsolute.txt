@@ -251,3 +251,7 @@ C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars-Big_1
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Stars-Big_1_2_PC.png
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Nebula.png
 C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\pacman.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\HighScoresButton.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Title.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\NewGameButton.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\QuitButton.png
