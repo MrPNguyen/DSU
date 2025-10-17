@@ -8,6 +8,8 @@ namespace Invaders.Classes
 {
     public class Player : Actor
     {
+        //Sound Source: https://kenney.nl/assets/sci-fi-sounds
+        //Credit: CC0
         public float ShotCooldown = 0f;
         public Vector2f size;
         private bool isInvulnerable= false;
@@ -124,6 +126,10 @@ namespace Invaders.Classes
                     if (ShotCooldown == 0)
                     {
                         scene.Events.PublishSpawnBullet(newPos, -1, scene);
+                        SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
+                        Sound shot =  new Sound(sound);
+                        shot.Play();
+                       
                         if (ShotCooldown > 0)
                         {
                             return;

@@ -7,12 +7,19 @@ namespace Invaders.Classes
         public float spawnCooldown = 0.0f;
         public float spawnRate = 0.0f;
         private GameState state;
+
+        public SceneLoader()
+        {
+            state = new GameState();
+        }
         public void LoadGame(Scene scene)
         {
+            state = GameState.MAINMENU;
             if (state == GameState.GAME)
             {
-                scene.Spawn(new Background(new Vector2f(0,0), "Nebula"));
-                scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue"));
+                scene.Clear();
+                scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
+                scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(new Enemy());
                 scene.Spawn(new Gui(new ScoreManager()));
                 scene.Spawn(new Player());
@@ -20,6 +27,8 @@ namespace Invaders.Classes
             }
             else if (state == GameState.MAINMENU)
             {
+                scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
+                scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
                 scene.Spawn(new MainMenu());
             }
             else if (state == GameState.NAMEMENU)

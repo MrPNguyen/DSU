@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
+using SFML.Audio;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -83,12 +84,31 @@ namespace Invaders.Classes
         private Vector2f SpawnPoint;
         private int Frame = 0;
         private bool AnimationDone = false;
-        public Explosion(Vector2f spawnPoint) : base("explosion")
+        private SoundBuffer sound;
+        private Sound Boom;
+        public Explosion(Vector2f spawnPoint) : base("explosion", "tilesets")
         {
             sprite.TextureRect = explosions[0];
             sprite.Position = spawnPoint;
             animationClock = new Clock();
             sprite.Scale = new Vector2f(0.5f, 0.5f);
+        }
+        public override void Create(Scene scene)
+        {
+            base.Create(scene);
+            //Sound Source: https://kenney.nl/assets/sci-fi-sounds
+            //Credit: CC0
+            sound = new SoundBuffer( scene.Assets.LoadSound("Boom", "sounds"));
+            Boom = new Sound(sound);
+            Boom.Play();
+        }
+
+        public override void Destroy(Scene scene)
+        {
+            base.Destroy(scene);
+            Boom.Stop();
+            Boom.Dispose();
+            sound.Dispose();
         }
 
 

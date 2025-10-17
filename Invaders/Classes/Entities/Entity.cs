@@ -8,15 +8,17 @@ namespace Invaders.Classes
     public class Entity
     {
         private readonly string textureName;
+        private readonly string folder;
         protected readonly Sprite sprite;
         protected readonly Sound sounds;
         public bool Dead;
         public int Zindex;
         public virtual bool Solid => false;
 
-        protected Entity(string textureName)
+        protected Entity(string textureName, string folder)
         {
             this.textureName = textureName;
+            this.folder = folder;
             sprite = new Sprite();
             sounds = new Sound();
         }
@@ -31,7 +33,7 @@ namespace Invaders.Classes
 
         public virtual void Create(Scene scene)
         {
-            sprite.Texture = scene.Assets.LoadTexture(textureName);
+            sprite.Texture = scene.Assets.LoadTexture(textureName, folder);
         }
         public virtual void Destroy(Scene scene)
         {
@@ -40,10 +42,7 @@ namespace Invaders.Classes
         
         public virtual void Update(Scene scene, float deltaTime)
         {
-            foreach (Entity found in scene.FindIntersects(Bounds)) 
-            {
-                CollideWith(scene, found);
-            }
+            
         }
 
         public virtual void Render(RenderTarget target)
@@ -53,7 +52,6 @@ namespace Invaders.Classes
                 target.Draw(sprite);
             }
         }
-        protected virtual void CollideWith(Scene s, Entity other) {}
     }
 }
 

@@ -6,8 +6,6 @@ namespace Invaders.Classes
 
     public delegate void PositionChangedEvent(Vector2f pos, float Y, Scene scene);
     
-    //TODO: Click Event for main menu?
-
     public class EventManager
     {
         private int scoreGained;

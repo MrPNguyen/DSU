@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
+using SFML.Audio;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -77,6 +78,11 @@ namespace Invaders.Classes
             if (ShotCooldown == 0)
             {
                 scene.Events.PublishSpawnBullet(newPos, 1, scene);
+                //Sound Source: https://kenney.nl/assets/sci-fi-sounds
+                //Credit: CC0
+                SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
+                Sound shot =  new Sound(sound);
+                shot.Play();
                 if (ShotCooldown > 0)
                 {
                     return;
@@ -100,6 +106,7 @@ namespace Invaders.Classes
             if (e is Bullet bullet &&  bullet.Y == -1)
             {
                 Dead = true;
+                contrail.Dead = true;
                 scene.Events.PublishGainScore(100, scene);
                 bullet.Dead = true;
                 Explosion explosion = new Explosion(new Vector2f(sprite.Position.X-50f, sprite.Position.Y-25));

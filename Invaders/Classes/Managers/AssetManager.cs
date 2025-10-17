@@ -17,40 +17,53 @@ namespace Invaders.Classes
             sounds = new Dictionary<string, SoundBuffer>();
         }
 
-        public Texture LoadTexture(string name)
+        public Texture LoadTexture(string name, string folder)
         {
             if (textures.TryGetValue(name, out Texture found))
             {
                 return found;
             }
 
-            string fileName = $"assets/{name}.png";
+            string fileName = $"assets\\{folder}\\{name}.png";
             Texture texture = new Texture(fileName);
             textures.Add(name, texture);
             return texture;
         }
 
-        public Font LoadFont(string name)
+        public Font LoadFont(string name, string folder)
         {
             if (fonts.TryGetValue(name, out Font found))
             {
                 return found;
             }
 
-            string fileName = $"assets/{name}.ttf";
+            string fileName = $"assets\\{folder}\\{name}.ttf";
             Font font = new Font(fileName);
             fonts.Add(name, font);
             return font;
         }
 
-        public SoundBuffer LoadSound(string name)
+        public SoundBuffer LoadSound(string name, string folder)
         {
             if (sounds.TryGetValue(name, out SoundBuffer found))
             {
                 return found;
             }
 
-            string fileName = $"assets/{name}.wav";
+            string fileName = $"assets\\{folder}\\{name}.ogg";
+            SoundBuffer sound = new SoundBuffer(fileName);
+            sounds.Add(name, sound);
+            return sound;
+        }
+
+        public SoundBuffer LoadMusic(string name, string folder)
+        {
+            if (sounds.TryGetValue(name, out SoundBuffer found))
+            {
+                return found;
+            }
+
+            string fileName = $"assets\\{folder}\\{name}.wav";
             SoundBuffer sound = new SoundBuffer(fileName);
             sounds.Add(name, sound);
             return sound;

@@ -14,9 +14,21 @@ namespace Invaders.Classes
         public int direction;
         public bool isPlayer;
        
-        protected Actor() : base("tileset")
+        protected Actor() : base("tileset", "tilesets")
         {
-            //TODO: Move everything needed from entity to Actor
+            
         }
+
+        public override void Update(Scene scene, float deltaTime)
+        {
+            base.Update(scene, deltaTime);
+            foreach (Entity found in scene.FindIntersects(Bounds)) 
+            {
+                CollideWith(scene, found);
+            }
+        }
+
+        protected virtual void CollideWith(Scene s, Entity other) {}
+        
     }
 }

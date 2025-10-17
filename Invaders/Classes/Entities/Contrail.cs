@@ -11,7 +11,7 @@ namespace Invaders.Classes
     {
         private Actor FollowTarget;
         
-        public Contrail(Actor followTarget) : base("tileset")
+        public Contrail(Actor followTarget) : base("tileset", "tilesets")
         {
             sprite.TextureRect = new IntRect(384, 320, 64, 64);
             sprite.Origin = new Vector2f(32, 32);

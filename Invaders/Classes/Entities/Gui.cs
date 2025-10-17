@@ -13,7 +13,7 @@ namespace Invaders.Classes
         public int currentHealth;
         private Font font;
         private ScoreManager Score;
-        public Gui(ScoreManager score) : base("pacman")
+        public Gui(ScoreManager score) : base("pacman", "tilesets")
         {
             scoreText = new Text();
             highscoreText = new Text();
@@ -24,7 +24,7 @@ namespace Invaders.Classes
         {
             base.Create(scene);
             sprite.TextureRect = new IntRect(72, 36, 18, 18);
-            font = scene.Assets.LoadFont("PressStart2P");
+            font = scene.Assets.LoadFont("PressStart2P", "fonts");
             scoreText.Font = font;
             //highscoreText.Font = font;
             scoreText.DisplayedString = "Score";

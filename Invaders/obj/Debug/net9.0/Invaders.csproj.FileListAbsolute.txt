@@ -80,9 +80,6 @@ C:\Users\yetre\RiderProjects\Invaders\obj\Debug\net9.0\Invaders.pdb
 C:\Users\yetre\RiderProjects\Invaders\obj\Debug\net9.0\Invaders.genruntimeconfig.cache
 C:\Users\yetre\RiderProjects\Invaders\obj\Debug\net9.0\ref\Invaders.dll
 C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\Invaders.exe
-C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\level1.txt
-C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\tileset.png
-C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\PressStart2P.ttf
 C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\Invaders.deps.json
 C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\Invaders.runtimeconfig.json
 C:\Users\yetre\RiderProjects\DSU\Invaders\bin\Debug\net9.0\Invaders.dll
