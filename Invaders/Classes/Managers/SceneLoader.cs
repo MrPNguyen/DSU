@@ -6,42 +6,44 @@ namespace Invaders.Classes
     {
         public float spawnCooldown = 0.0f;
         public float spawnRate = 0.0f;
-        private GameState state;
+
 
         public SceneLoader()
         {
-            state = new GameState();
+            
         }
         public void LoadGame(Scene scene)
         {
-            state = GameState.MAINMENU;
-            if (state == GameState.GAME)
+            GameState SceneSwitch = SceneManager.state;
+            if (SceneSwitch == GameState.GAME)
             {
                 scene.Clear();
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(new Enemy());
-                scene.Spawn(new Gui(new ScoreManager()));
+                scene.Spawn(new Gui(new ScoreManager(), new HealthManager()));
+                scene.Spawn(new Buttons("Pause", new Vector2f(10, 10), "MainMenu", "PauseButton", new Vector2f(0.2f, 0.2f)));
                 scene.Spawn(new Player());
                 scene.GameLost = false;
             }
-            else if (state == GameState.MAINMENU)
+            else if (SceneSwitch == GameState.MAINMENU)
             {
+                scene.Clear();
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
                 scene.Spawn(new MainMenu());
             }
-            else if (state == GameState.NAMEMENU)
+            else if (SceneSwitch == GameState.NAMEMENU)
             {
                 
             }
-            else if (state == GameState.SCOREMENU)
+            else if (SceneSwitch == GameState.SCOREMENU)
             {
                 
             }
-            else
+            else if (SceneSwitch == GameState.QUIT)
             {
-                state = GameState.MAINMENU;
+                Environment.Exit(0);
             }
         }
 
@@ -56,7 +58,7 @@ namespace Invaders.Classes
         }
         public void SpawnEnemies(Scene scene)
         {
-            if (state == GameState.GAME)
+            if (SceneManager.state == GameState.GAME)
             {
                 if (spawnCooldown <= 0)
                 {

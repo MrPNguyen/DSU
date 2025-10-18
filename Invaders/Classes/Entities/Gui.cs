@@ -9,15 +9,15 @@ namespace Invaders.Classes
     {
         private Text scoreText;
         public Text highscoreText;
-        public int maxHealth = 3;
-        public int currentHealth;
         private Font font;
         private ScoreManager Score;
-        public Gui(ScoreManager score) : base("pacman", "tilesets")
+        private HealthManager Health;
+        public Gui(ScoreManager score, HealthManager health) : base("pacman", "tilesets")
         {
             scoreText = new Text();
             highscoreText = new Text();
             Score = score;
+            Health = health;
         }
         
         public override void Create(Scene scene)
@@ -26,32 +26,33 @@ namespace Invaders.Classes
             sprite.TextureRect = new IntRect(72, 36, 18, 18);
             font = scene.Assets.LoadFont("PressStart2P", "fonts");
             scoreText.Font = font;
-            //highscoreText.Font = font;
             scoreText.DisplayedString = "Score";
-            //highscoreText.DisplayedString = "HighScore";
             scoreText.CharacterSize = 23;
-            //highscoreText.CharacterSize = 12;
-            currentHealth = maxHealth;
-            scene.Events.LoseHealth += OnLoseHealth;
-            //scene.Events.GainScore += Score.OnScoreGain;
-            //LoadhighScore();
+            Health.currentHealth = Health.maxHealth;
+            scene.Events.LoseHealth += Health.OnLoseHealth;
+            scene.Events.GainScore += Score.OnScoreGain;
+           
 
         }
-        
-        private void OnLoseHealth(int amount, Scene scene)
+
+        public void DisplayHighscore(RenderTarget target)
         {
-            currentHealth -= amount;
-            if (currentHealth <= 0)
-            {
-                scene.GameLost = true;
-            }
+            //highscoreText.Font = font;
+            //highscoreText.DisplayedString = "HighScore";
+            //highscoreText.CharacterSize = 12;
+            //highscoreText.DisplayedString = $"HighScore: {highScore}";
+            /* highscoreText.Position = new Vector2f(
+                405 - highscoreText.GetGlobalBounds().Width, 415);*/
+            //target.Draw(highscoreText);
+            //LoadhighScore();
         }
+        
         public override void Render(RenderTarget target)
         {
-            sprite.Position = new Vector2f(5, 5);
-            for (int i = 0; i < maxHealth; i++) 
+            sprite.Position = new Vector2f(55, 5);
+            for (int i = 0; i < Health.maxHealth; i++) 
             {
-                sprite.TextureRect = i < currentHealth
+                sprite.TextureRect = i < Health.currentHealth
                     ? new IntRect(72, 36, 18, 18) // Full heart
                     : new IntRect(72, 0, 18, 18); // Empty heart
                 base.Render(target);
@@ -60,14 +61,12 @@ namespace Invaders.Classes
             
             }
             scoreText.DisplayedString = $"Score: {Score.currentScore}";
-            //highscoreText.DisplayedString = $"HighScore: {highScore}";
-            /* highscoreText.Position = new Vector2f(
-                405 - highscoreText.GetGlobalBounds().Width, 415);*/
+           
             scoreText.Position = new Vector2f(
                 490 - scoreText.GetGlobalBounds().Width, 8
             );
             target.Draw(scoreText);
-            //target.Draw(highscoreText);
+           
         }
        
         public override void Update(Scene scene, float deltaTime)

@@ -20,9 +20,9 @@ public class MainMenu : Entity
         speed = 30.0f;
         size = new Vector2f(
             sprite.GetGlobalBounds().Width, sprite.GetGlobalBounds().Height);
-        HighScoreButton = new Buttons("NewGameButton", new Vector2f(40, 250), "MainMenu");
-        NewGameButton = new Buttons("HighScoresButton", new Vector2f(40, 400), "MainMenu");
-        QuitButton = new Buttons("QuitButton", new Vector2f(40, 550), "MainMenu");
+        HighScoreButton = new Buttons("NewGameButton", new Vector2f(40, 250), "MainMenu", "NewGame", new Vector2f(0.7f, 0.7f));
+        NewGameButton = new Buttons("HighScoresButton", new Vector2f(40, 400), "MainMenu", "HighScores", new Vector2f(0.7f, 0.7f));
+        QuitButton = new Buttons("QuitButton", new Vector2f(40, 550), "MainMenu", "Quit", new Vector2f(0.7f, 0.7f));
     }
 
     public override void Create(Scene scene)

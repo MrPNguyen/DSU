@@ -10,11 +10,11 @@ namespace Invaders.Classes
         //Tilesheet source for player/Enemy: https://kenney.nl/assets/simple-space
         //Creative Commons CC0
         public float speed;
-        protected bool moving;
+        public bool moving;
         public int direction;
         public bool isPlayer;
        
-        protected Actor() : base("tileset", "tilesets")
+        public Actor() : base("tileset", "tilesets")
         {
             
         }
@@ -26,6 +26,8 @@ namespace Invaders.Classes
             {
                 CollideWith(scene, found);
             }
+
+            
         }
 
         protected virtual void CollideWith(Scene s, Entity other) {}

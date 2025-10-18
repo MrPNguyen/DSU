@@ -24,7 +24,7 @@ namespace Invaders.Classes
                 return found;
             }
 
-            string fileName = $"assets\\{folder}\\{name}.png";
+            string fileName = $"assets/{folder}/{name}.png";
             Texture texture = new Texture(fileName);
             textures.Add(name, texture);
             return texture;

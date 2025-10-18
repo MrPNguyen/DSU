@@ -34,6 +34,7 @@ namespace Invaders.Classes
             contrail = new Contrail(this);
             isPlayer = false;
             Zindex = 1;
+            moving = true;
         }
         public override void Create(Scene scene)
         {
@@ -46,50 +47,59 @@ namespace Invaders.Classes
 
         public override void Update(Scene scene, float deltaTime)
         {
-            base.Update(scene, deltaTime);
-            ShotCooldown -= deltaTime;
-            if (ShotCooldown < 0)
+            if (moving)
             {
-                ShotCooldown = 0;
-            }
-            newPos = sprite.Position;
-            newPos += direction * deltaTime * speed; 
-            
-            float halfWidth = size.X / 2; //splittra center för att göra hitbox "större"
-            if (newPos.X > Program.ScreenW - halfWidth) //Right side
-            {
-                newPos.X = Program.ScreenW - halfWidth;
-                Reflect(new Vector2f(-1, 0));
-                
-            }
-
-            if (newPos.X < halfWidth) //Left side
-            {
-                newPos.X = halfWidth;
-                Reflect(new Vector2f(1, 0));
-            }
-
-            if (newPos.Y > Program.ScreenH - halfWidth) //Bottom
-            {
-                sprite.Position = SpawnPos;
-                return;
-            }
-            sprite.Position = newPos;
-            if (ShotCooldown == 0)
-            {
-                scene.Events.PublishSpawnBullet(newPos, 1, scene);
-                //Sound Source: https://kenney.nl/assets/sci-fi-sounds
-                //Credit: CC0
-                SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
-                Sound shot =  new Sound(sound);
-                shot.Play();
-                if (ShotCooldown > 0)
+                base.Update(scene, deltaTime);
+                ShotCooldown -= deltaTime;
+                if (ShotCooldown < 0)
                 {
+                    ShotCooldown = 0;
+                }
+                newPos = sprite.Position;
+                newPos += direction * deltaTime * speed; 
+            
+                float halfWidth = size.X / 2; //splittra center för att göra hitbox "större"
+                if (newPos.X > Program.ScreenW - halfWidth) //Right side
+                {
+                    newPos.X = Program.ScreenW - halfWidth;
+                    Reflect(new Vector2f(-1, 0));
+                
+                }
+
+                if (newPos.X < halfWidth) //Left side
+                {
+                    newPos.X = halfWidth;
+                    Reflect(new Vector2f(1, 0));
+                }
+
+                if (newPos.Y > Program.ScreenH - halfWidth) //Bottom
+                {
+                    sprite.Position = SpawnPos;
                     return;
                 }
-                ShotCooldown = 2.0f;
-
-               
+                sprite.Position = newPos;
+                if (ShotCooldown == 0)
+                {
+                    scene.Events.PublishSpawnBullet(newPos, 1, scene);
+                    //Sound Source: https://kenney.nl/assets/sci-fi-sounds
+                    //Credit: CC0
+                    SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
+                    Sound shot =  new Sound(sound);
+                    shot.Play();
+                    if (ShotCooldown > 0)
+                    {
+                        return;
+                    }
+                    ShotCooldown = 2.0f;
+                }
+            }
+            if (scene.PauseActive)
+            {
+                moving = false;
+            }
+            else
+            {
+                moving = true;
             }
         }
         

@@ -12,6 +12,7 @@ namespace Invaders.Classes
         public readonly EventManager Events;
         public readonly SceneLoader Loader;
         public bool GameLost;
+        public bool PauseActive = false;
        
         public Scene(AssetManager assets, EventManager events, SceneLoader loader)
         {

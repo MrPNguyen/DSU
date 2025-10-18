@@ -5,5 +5,7 @@ public enum GameState
     GAME,
     MAINMENU,
     NAMEMENU,
-    SCOREMENU
+    SCOREMENU,
+    QUIT,
+    PAUSE
 }
