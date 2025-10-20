@@ -3,7 +3,7 @@ using SFML.System;
 
 namespace Invaders.Classes;
 
-public class MainMenu : Entity
+public class MainMenu : Menuable
 {
     public Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
     private Vector2f newPos;

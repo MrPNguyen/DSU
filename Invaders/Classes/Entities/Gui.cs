@@ -72,7 +72,7 @@ namespace Invaders.Classes
         public override void Update(Scene scene, float deltaTime)
         {
             base.Update(scene, deltaTime);
-            Score.Update(deltaTime);
+            Score.Update(scene, deltaTime);
         }
     }
 }

@@ -5,8 +5,10 @@ using SFML.Window;
 
 namespace Invaders.Classes;
 
-public class Buttons : Entity
+public class Buttons : Menuable
 {
+    //Buttons asset source: https://nectanebo.itch.io/menu-buttons
+    //Credit to: Nectanebo 
     private string TextureName;
     private Vector2f SpawnPosition;
     private GameState State;
@@ -34,7 +36,7 @@ public class Buttons : Entity
             {
                 if (ButtonName == "NewGame")
                 {
-                    SceneManager.LoadScene(GameState.GAME);
+                    SceneManager.LoadScene(GameState.NAMEMENU);
                 }
                 else if (ButtonName == "HighScores")
                 {
@@ -51,6 +53,10 @@ public class Buttons : Entity
                 else if (ButtonName == "ExitGame")
                 {
                     SceneManager.LoadScene(GameState.MAINMENU);
+                }
+                else if (ButtonName == "PlayButton")
+                {
+                    SceneManager.LoadScene(GameState.GAME);
                 }
                 if (ButtonName == "PauseButton")
                 {

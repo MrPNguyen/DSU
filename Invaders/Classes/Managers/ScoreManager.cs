@@ -11,10 +11,12 @@ public class ScoreManager
     private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
     private static readonly string filePath = Path.Combine(folderPath, "HighScore.txt");
     private Clock ScoreClock;
+    private Actor actor;
     
     public ScoreManager()
     {
         ScoreClock = new Clock();
+        actor = new Actor();
     }
     private void SaveHighScore(int score)
     {
@@ -69,12 +71,24 @@ public class ScoreManager
         }
     }
 
-    public void Update(float deltaTime)
+    public void Update(Scene scene, float deltaTime)
     {
-        if (ScoreClock.ElapsedTime.AsSeconds() >= 1)
+        if (actor.moving)
         {
-            currentScore++;
-            ScoreClock.Restart();
+            if (ScoreClock.ElapsedTime.AsSeconds() >= 1)
+            {
+                currentScore++;
+                ScoreClock.Restart();
+            }
+        }
+        
+        if (scene.PauseActive)
+        {
+            actor.moving = false;
+        }
+        else
+        {
+            actor.moving = true;
         }
     }
 }

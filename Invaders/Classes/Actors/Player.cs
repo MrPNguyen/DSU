@@ -33,6 +33,7 @@ namespace Invaders.Classes
             contrail = new Contrail(this);
             Zindex = 1;
             moving = true;
+            isPlayer = true;
         }
 
         public override void Create(Scene scene)

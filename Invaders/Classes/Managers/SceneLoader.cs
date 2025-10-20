@@ -35,7 +35,10 @@ namespace Invaders.Classes
             }
             else if (SceneSwitch == GameState.NAMEMENU)
             {
-                
+                scene.Clear();
+                scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
+                scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
+                scene.Spawn(new NameMenu("tileset", "tilesets"));
             }
             else if (SceneSwitch == GameState.SCOREMENU)
             {
