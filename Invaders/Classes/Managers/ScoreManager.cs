@@ -73,7 +73,7 @@ public class ScoreManager
 
     public void Update(Scene scene, float deltaTime)
     {
-        if (actor.moving)
+        if (actor.moving && !scene.GameLost)
         {
             if (ScoreClock.ElapsedTime.AsSeconds() >= 1)
             {

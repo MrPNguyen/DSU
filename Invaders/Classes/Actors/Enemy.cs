@@ -17,7 +17,7 @@ namespace Invaders.Classes
         public float ShotCooldown = 0f;
         private Explosion explosion;
         private Vector2f newPos;
-        private Contrail contrail;
+        public Contrail contrail;
         private int Direction = 2;
 
         public Enemy()
@@ -29,7 +29,7 @@ namespace Invaders.Classes
             rand = new Random();
             sprite.Scale = new Vector2f(0.7f, 0.7f);
             sprite.Rotation = 180.0f;
-            speed = 30.0f;
+            speed = 60.0f;
             explosion = new Explosion(newPos);
             contrail = new Contrail(this);
             isPlayer = false;
@@ -47,7 +47,7 @@ namespace Invaders.Classes
 
         public override void Update(Scene scene, float deltaTime)
         {
-            if (moving)
+            if (moving && !scene.GameLost)
             {
                 base.Update(scene, deltaTime);
                 ShotCooldown -= deltaTime;

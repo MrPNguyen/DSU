@@ -15,6 +15,7 @@ namespace Invaders
             using ( window = new RenderWindow(
                        new VideoMode(ScreenW, ScreenH), "Invaders", Styles.Titlebar)) {
                 window.Closed += (o, e) => window.Close();
+                window.SetFramerateLimit(60);
                 Clock clock = new Clock();
                 Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader());
                 GameState lastState = SceneManager.state; 
@@ -31,9 +32,15 @@ namespace Invaders
                     scene.UpdateAll(scene, deltaTime);
                     window.Clear();
                     scene.RenderAll(window);
-                    window.Display();
+                    window.Display(); 
                 }
             }
         }
     }
 }
+
+//Problems:
+//Fix Game reset Crash
+//Fix high score in game over screen
+//Fix high score list in main menu
+//Fix my life

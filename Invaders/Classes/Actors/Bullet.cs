@@ -10,7 +10,7 @@ namespace Invaders.Classes
         public readonly Vector2f BulletDirection;
         public bool enemyShot;
         public readonly float Y;
-        public const float BulletSpeed = 150f;
+        public const float BulletSpeed = 300f;
         public Bullet(Vector2f pos, float y)
         {
             sprite.TextureRect = new IntRect(64, 0, 64, 64);

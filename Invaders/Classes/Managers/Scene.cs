@@ -38,7 +38,6 @@ namespace Invaders.Classes
                 entities.RemoveAt(i);
                 entity.Destroy(this);
             }
-            
         }
 
         public void UpdateAll(Scene scene, float deltaTime)
@@ -61,8 +60,8 @@ namespace Invaders.Classes
                 entity.Update(this, deltaTime);
             }
             Loader.SpawnEnemies(scene);
-            Loader.Reload(scene);
-            Loader.IncreaseSpawnRate();
+            Loader.GameLost(scene);
+            Loader.IncreaseSpawnRate(scene);
         }
 
         public void RenderAll(RenderTarget target)
@@ -70,9 +69,9 @@ namespace Invaders.Classes
             for (int i = 0; i < entities.Count;)
             {
                 Entity entity = entities[i];
+                entity.Render(target);
                 if (entity.Dead) entities.RemoveAt(i);
                 else i++;
-                entity.Render(target);
             }
         }
       

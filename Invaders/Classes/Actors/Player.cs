@@ -28,7 +28,7 @@ namespace Invaders.Classes
             size = new Vector2f(
                 sprite.GetGlobalBounds().Width, sprite.GetGlobalBounds().Height);
             normalColor = sprite.Color;
-            speed = 100.0f;
+            speed = 200.0f;
             newPos = new Vector2f();
             contrail = new Contrail(this);
             Zindex = 1;
@@ -45,7 +45,7 @@ namespace Invaders.Classes
         
         public override void Update(Scene scene, float deltaTime)
         {
-            if (moving)
+            if (moving && !scene.GameLost)
             {
                 base.Update(scene, deltaTime);
                 ShotCooldown -= deltaTime;
@@ -171,6 +171,7 @@ namespace Invaders.Classes
             {
                 scene.Events.PublishLoseHealth(1, scene);
                 enemy.Dead = true;
+                enemy.contrail.Dead = true;
                 isInvulnerable = true;
                 invulnerableTimer = invulnerableDuration;
             }

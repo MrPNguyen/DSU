@@ -5,13 +5,13 @@ using Color = SFML.Graphics.Color;
 
 namespace Invaders.Classes;
 
-public class Menuable : Entity
+public class Menus : Entity
 {
     private string TextureName;
     private string Folder;
     public Font font;
 
-    public Menuable(string textureName, string folder) : base(textureName, folder)
+    public Menus(string textureName, string folder) : base(textureName, folder)
     {
         TextureName = textureName;
         Folder = folder;

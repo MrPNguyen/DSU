@@ -5,7 +5,7 @@ using Color = SFML.Graphics.Color;
 
 namespace Invaders.Classes;
 
-public class PauseMenu : Menuable
+public class PauseMenu : Menus
 {
     //PauseMenu asset source: https://gummypopcat.itch.io/2d-ui-assets
     //Credit to gummypopcat
@@ -14,16 +14,14 @@ public class PauseMenu : Menuable
     private Buttons ContinueButton;
     private Actor actors;
     private Text pauseText;
-    private Gui gui;
     public PauseMenu(string textureName, string folder) :  base(textureName, folder)
     {
         TextureName = textureName;
         Zindex = 1;
         ExitButton = new Buttons("Exit", new Vector2f(40, 400), "MainMenu", "ExitGame", new Vector2f(0.7f, 0.7f));
-        ContinueButton = new Buttons("Continue", new Vector2f(40, 250), "MainMenu", "ContinueGame", new Vector2f(0.7f, 0.7f));
+        ContinueButton = new Buttons("Resume", new Vector2f(40, 250), "MainMenu", "ResumeGame", new Vector2f(0.7f, 0.7f));
         actors = new Actor();
         pauseText = new Text();
-        gui = new Gui(new ScoreManager(), new HealthManager());
     }
 
     public override void Create(Scene scene)

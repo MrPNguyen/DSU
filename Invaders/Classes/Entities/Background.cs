@@ -10,7 +10,7 @@ namespace Invaders.Classes
         //Credit to DinVStudio
         //Music source: https://opengameart.org/content/kind-of-boss
         //Credit to G_P, song name: Kind Of Boss
-        public const float ScrollSpeed = 100f;
+        public const float ScrollSpeed = 200f;
         public Vector2f spawn;
         private SoundBuffer sound;
         private Sound music;
@@ -43,11 +43,14 @@ namespace Invaders.Classes
 
         public override void Update(Scene scene, float deltaTime)
         {
-            sprite.Position += new Vector2f(0, ScrollSpeed * deltaTime);
-          
-            if (sprite.Position.Y >= 800)
+            if (!scene.GameLost)
             {
-                sprite.Position -= new Vector2f(0, 800*2);
+                sprite.Position += new Vector2f(0, ScrollSpeed * deltaTime);
+          
+                if (sprite.Position.Y >= 800)
+                {
+                    sprite.Position -= new Vector2f(0, 800*2);
+                }
             }
         }
     }

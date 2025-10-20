@@ -7,5 +7,5 @@ public enum GameState
     NAMEMENU,
     SCOREMENU,
     QUIT,
-    PAUSE
+    PAUSE,
 }

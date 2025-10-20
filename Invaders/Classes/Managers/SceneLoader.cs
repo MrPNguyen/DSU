@@ -1,4 +1,5 @@
 ﻿using SFML.System;
+using SFML.Window;
 
 namespace Invaders.Classes
 {
@@ -6,11 +7,11 @@ namespace Invaders.Classes
     {
         public float spawnCooldown = 0.0f;
         public float spawnRate = 0.0f;
-
+        private Actor actor;
 
         public SceneLoader()
         {
-            
+            actor = new Actor();
         }
         public void LoadGame(Scene scene)
         {
@@ -32,6 +33,7 @@ namespace Invaders.Classes
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
                 scene.Spawn(new MainMenu());
+                scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.NAMEMENU)
             {
@@ -39,10 +41,11 @@ namespace Invaders.Classes
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
                 scene.Spawn(new NameMenu("tileset", "tilesets"));
+                scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.SCOREMENU)
             {
-                
+                scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.QUIT)
             {
@@ -59,6 +62,15 @@ namespace Invaders.Classes
                 scene.GameLost = false;
             }
         }
+        
+        public void GameLost(Scene scene)
+        {
+            if (scene.GameLost)
+            {
+                scene.Spawn(new GameOverMenu(new ScoreManager()));   
+                actor.moving = false;
+            }
+        }
         public void SpawnEnemies(Scene scene)
         {
             if (SceneManager.state == GameState.GAME)
@@ -72,21 +84,24 @@ namespace Invaders.Classes
                 {
                     return;
                 }
-                spawnCooldown = 9.0f;
+                spawnCooldown = 5.0f;
             }
         }
 
-        public void IncreaseSpawnRate()
+        public void IncreaseSpawnRate(Scene scene)
         {
-            if (spawnRate <= 0)
+            if (!scene.GameLost)
             {
-                spawnCooldown--;
+                if (spawnRate <= 0)
+                {
+                    spawnCooldown--;
+                }
+                if (spawnRate > 0 || spawnCooldown <= 2)
+                {
+                    return;
+                }
+                spawnRate = 50.0f;
             }
-            if (spawnRate > 0 || spawnCooldown <= 2)
-            {
-                return;
-            }
-            spawnRate = 50.0f;
         }
     }
 }
