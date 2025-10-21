@@ -13,6 +13,7 @@ namespace Invaders.Classes
         public readonly SceneLoader Loader;
         public bool GameLost;
         public bool PauseActive = false;
+        public bool ResetGame = false;
        
         public Scene(AssetManager assets, EventManager events, SceneLoader loader)
         {
@@ -56,11 +57,19 @@ namespace Invaders.Classes
             Events.Update(this);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
+                //Console.WriteLine($"entities.Count: {entities.Count}");
+                //Console.WriteLine($"i: {i}");
                 Entity entity = entities[i];
                 entity.Update(this, deltaTime);
             }
             Loader.SpawnEnemies(scene);
             Loader.GameLost(scene);
+            if (ResetGame)
+            {
+                ResetGame = false;
+                Loader.Reload(this);
+                return;
+            }
             Loader.IncreaseSpawnRate(scene);
         }
 

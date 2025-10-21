@@ -117,7 +117,7 @@ namespace Invaders.Classes
             {
                 Dead = true;
                 contrail.Dead = true;
-                scene.Events.PublishGainScore(100, scene);
+                scene.Events.PublishGainScore(10, scene);
                 bullet.Dead = true;
                 Explosion explosion = new Explosion(new Vector2f(sprite.Position.X-50f, sprite.Position.Y-25));
                 scene.Spawn(explosion);

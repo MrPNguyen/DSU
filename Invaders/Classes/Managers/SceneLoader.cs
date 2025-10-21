@@ -8,10 +8,16 @@ namespace Invaders.Classes
         public float spawnCooldown = 0.0f;
         public float spawnRate = 0.0f;
         private Actor actor;
+        public Gui gui;
+        private ScoreManager scoreManager;
+        private int ActiveScore;
+        private bool GameOver = false;
 
         public SceneLoader()
         {
             actor = new Actor();
+            scoreManager = new ScoreManager(ActiveScore);
+            gui = new Gui(new ScoreManager(gui.Score.CurrentScore), new HealthManager());
         }
         public void LoadGame(Scene scene)
         {
@@ -22,9 +28,9 @@ namespace Invaders.Classes
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(new Enemy());
-                scene.Spawn(new Gui(new ScoreManager(), new HealthManager()));
+                scene.Spawn(gui);
                 scene.Spawn(new Buttons("Pause", new Vector2f(10, 10), "MainMenu", "PauseButton", new Vector2f(0.2f, 0.2f)));
-                scene.Spawn(new Player());
+                scene.Spawn(new Player(new HealthManager()));
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.MAINMENU)
@@ -60,31 +66,38 @@ namespace Invaders.Classes
                 scene.Clear();
                 LoadGame(scene);
                 scene.GameLost = false;
+                GameOver = false;
             }
         }
         
         public void GameLost(Scene scene)
         {
-            if (scene.GameLost)
+            if (scene.GameLost && !GameOver)
             {
-                scene.Spawn(new GameOverMenu(new ScoreManager()));   
+                if(scene.FindByType(out Gui gui))
+                scene.Spawn(new GameOverMenu(new ScoreManager(gui.Score.CurrentScore)));
                 actor.moving = false;
+                GameOver = true;
             }
         }
         public void SpawnEnemies(Scene scene)
         {
-            if (SceneManager.state == GameState.GAME)
+            if (!scene.GameLost)
             {
-                if (spawnCooldown <= 0)
+                if (SceneManager.state == GameState.GAME)
                 {
-                    Enemy enemy = new Enemy();
-                    scene.Spawn(enemy);
+                    if (spawnCooldown <= 0)
+                    {
+                        Enemy enemy = new Enemy();
+                        enemy.Zindex = 1;
+                        scene.Spawn(enemy);
+                    }
+                    if (spawnCooldown > 0)
+                    {
+                        return;
+                    }
+                    spawnCooldown = 5.0f;
                 }
-                if (spawnCooldown > 0)
-                {
-                    return;
-                }
-                spawnCooldown = 5.0f;
             }
         }
 

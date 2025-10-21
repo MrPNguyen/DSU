@@ -29,6 +29,12 @@ namespace Invaders.Classes
             {
                 sprite.Rotation = 180.0f;
             }
+
+            if (sprite.Position.Y <= 0 || sprite.Position.Y >= Program.ScreenH)
+            {
+                Dead = true;
+                scene.entities.Remove(this);
+            }
         }
         
     }

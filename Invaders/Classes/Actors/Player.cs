@@ -20,7 +20,8 @@ namespace Invaders.Classes
         public bool ableToShoot;
         private Vector2f newPos;
         private Contrail contrail;
-        public Player()
+        private HealthManager Health;
+        public Player(HealthManager health)
         {
             sprite.TextureRect = new IntRect(192, 128, 64, 64);
             sprite.Origin = new Vector2f(32, 32);
@@ -34,6 +35,7 @@ namespace Invaders.Classes
             Zindex = 1;
             moving = true;
             isPlayer = true;
+            Health = health;
         }
 
         public override void Create(Scene scene)
@@ -151,6 +153,13 @@ namespace Invaders.Classes
             {
                 moving = true;
             }
+
+            /*if (Health.currentHealth <= 0)
+            {
+                Dead = true;
+                Explosion explosion = new Explosion(new Vector2f(sprite.Position.X-50f, sprite.Position.Y-25));
+                scene.Spawn(explosion);
+            }*/
         }
         
         protected override void CollideWith(Scene scene, Entity e)
@@ -164,6 +173,7 @@ namespace Invaders.Classes
             {
                 scene.Events.PublishLoseHealth(1, scene);
                 bullet.Dead = true;
+                scene.entities.Remove(bullet);
                 isInvulnerable = true;
                 invulnerableTimer = invulnerableDuration;
             }

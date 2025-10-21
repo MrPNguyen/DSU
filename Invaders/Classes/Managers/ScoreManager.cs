@@ -7,18 +7,21 @@ namespace Invaders.Classes;
 public class ScoreManager
 {
     public int highScore;
-    public int currentScore;
+    public int CurrentScore;
     private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
     private static readonly string filePath = Path.Combine(folderPath, "HighScore.txt");
     private Clock ScoreClock;
     private Actor actor;
+    public List<int> scores; 
     
-    public ScoreManager()
+    public ScoreManager(int currentScore)
     {
         ScoreClock = new Clock();
         actor = new Actor();
+        scores = new List<int>();
+        CurrentScore = currentScore;
     }
-    private void SaveHighScore(int score)
+    private void SaveHighScore()
     {
         if (!Directory.Exists(folderPath))
         {
@@ -28,7 +31,8 @@ public class ScoreManager
             
         StreamWriter writer = new StreamWriter(save);
             
-        writer.Write(currentScore);
+        writer.Write(CurrentScore);
+        scores.Add(CurrentScore);
             
         writer.Dispose();
         save.Dispose();
@@ -63,11 +67,11 @@ public class ScoreManager
     
     public void OnScoreGain(int value, Scene scene)
     {
-        currentScore += value;
-        if (currentScore > highScore)
+        CurrentScore += value;
+        if (CurrentScore > highScore)
         {
-            highScore = currentScore;
-            SaveHighScore(currentScore);
+            highScore = CurrentScore;
+            SaveHighScore();
         }
     }
 
@@ -77,7 +81,7 @@ public class ScoreManager
         {
             if (ScoreClock.ElapsedTime.AsSeconds() >= 1)
             {
-                currentScore++;
+                CurrentScore++;
                 ScoreClock.Restart();
             }
         }

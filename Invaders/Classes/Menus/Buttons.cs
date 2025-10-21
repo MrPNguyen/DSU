@@ -72,7 +72,7 @@ public class Buttons : Menus
                         }
                         else if (ButtonName == "PlayAgainButton")
                         {
-                            scene.Loader.Reload(scene);
+                            scene.ResetGame = true;
                         }
                         else if (ButtonName == "BackButton")
                         {
@@ -92,6 +92,7 @@ public class Buttons : Menus
         else
         {
             sprite.Color = Color.White;
+
         }
     }
 }

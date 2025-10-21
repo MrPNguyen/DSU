@@ -11,6 +11,7 @@ public class HealthManager
         if (currentHealth <= 0)
         {
             scene.GameLost = true;
+            currentHealth = maxHealth;
         }
     }
 }

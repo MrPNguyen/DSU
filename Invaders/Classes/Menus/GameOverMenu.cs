@@ -28,11 +28,10 @@ public class GameOverMenu : Menus
 
     public override void Create(Scene scene)
     {
-        if(scene.GameLost)
-        {
             base.Create(scene);
             scene.Spawn(NewGame);
             scene.Spawn(Quit);
+
             font = scene.Assets.LoadFont("PressStart2P", "fonts");
 
             GameOver.Font = font;
@@ -43,8 +42,7 @@ public class GameOverMenu : Menus
             GameOver.Position = new Vector2f(12, 250);
             
             YourScore.Font = font;
-            YourScore.DisplayedString = $"Your Score: {Score.currentScore}";
-            Console.WriteLine(Score.currentScore);
+            YourScore.DisplayedString = "Your Score";
             YourScore.CharacterSize = 25;
             YourScore.OutlineColor = Color.Black;
             YourScore.OutlineThickness = 2;
@@ -63,8 +61,6 @@ public class GameOverMenu : Menus
             AskQuit.OutlineColor = Color.Black;
             AskQuit.OutlineThickness = 2;
             AskQuit.Position = new Vector2f(290, 410);
-        }
-        
     }
     
     public override void Render(RenderTarget target)
@@ -73,6 +69,8 @@ public class GameOverMenu : Menus
         target.Draw(GameOver);
         target.Draw(AskPlayAgain);
         target.Draw(AskQuit);
+        YourScore.DisplayedString = $"Your Score: {Score.CurrentScore}";
+        Console.WriteLine("Score: " + Score.CurrentScore); 
         target.Draw(YourScore);
     }
 }

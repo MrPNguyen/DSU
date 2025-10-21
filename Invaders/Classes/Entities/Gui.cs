@@ -10,7 +10,7 @@ namespace Invaders.Classes
         private Text scoreText;
         public Text highscoreText;
         private Font font;
-        private ScoreManager Score;
+        public ScoreManager Score;
         private HealthManager Health;
         public Gui(ScoreManager score, HealthManager health) : base("pacman", "tilesets")
         {
@@ -60,7 +60,7 @@ namespace Invaders.Classes
                 sprite.Scale = new Vector2f(3, 3);
             
             }
-            scoreText.DisplayedString = $"Score: {Score.currentScore}";
+            scoreText.DisplayedString = $"Score: {Score.CurrentScore}";
            
             scoreText.Position = new Vector2f(
                 490 - scoreText.GetGlobalBounds().Width, 8
