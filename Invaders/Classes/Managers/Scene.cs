@@ -11,16 +11,20 @@ namespace Invaders.Classes
         public readonly AssetManager Assets;
         public readonly EventManager Events;
         public readonly SceneLoader Loader;
+        public readonly ScoreManager Score;
+        public readonly HealthManager Health;
         public bool GameLost;
         public bool PauseActive = false;
         public bool ResetGame = false;
        
-        public Scene(AssetManager assets, EventManager events, SceneLoader loader)
+        public Scene(AssetManager assets, EventManager events, SceneLoader loader, ScoreManager score, HealthManager health)
         {
             entities = new List<Entity>();
             Assets = assets;
             Events = events;
             Loader = loader;
+            Score = score;
+            Health = health;
             events.SpawnBullet += SpawnBullet; 
         }
 
@@ -73,12 +77,12 @@ namespace Invaders.Classes
             Loader.IncreaseSpawnRate(scene);
         }
 
-        public void RenderAll(RenderTarget target)
+        public void RenderAll(Scene scene, RenderTarget target)
         {
             for (int i = 0; i < entities.Count;)
             {
                 Entity entity = entities[i];
-                entity.Render(target);
+                entity.Render(scene, target);
                 if (entity.Dead) entities.RemoveAt(i);
                 else i++;
             }

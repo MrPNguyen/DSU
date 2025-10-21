@@ -8,18 +8,16 @@ public class ScoreManager
 {
     public int highScore;
     public int CurrentScore;
+    public string playerName;
     private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
     private static readonly string filePath = Path.Combine(folderPath, "HighScore.txt");
     private Clock ScoreClock;
-    private Actor actor;
-    public List<int> scores; 
+    private Dictionary<string, int> Scores;
     
-    public ScoreManager(int currentScore)
+    public ScoreManager()
     {
         ScoreClock = new Clock();
-        actor = new Actor();
-        scores = new List<int>();
-        CurrentScore = currentScore;
+        Scores = new Dictionary<string, int>();
     }
     private void SaveHighScore()
     {
@@ -31,14 +29,13 @@ public class ScoreManager
             
         StreamWriter writer = new StreamWriter(save);
             
-        writer.Write(CurrentScore);
-        scores.Add(CurrentScore);
+        writer.Write(Scores);
             
         writer.Dispose();
         save.Dispose();
     }
 
-    private void LoadhighScore()
+    public void LoadhighScore()
     {
         if (!File.Exists(filePath))
         {
@@ -77,22 +74,13 @@ public class ScoreManager
 
     public void Update(Scene scene, float deltaTime)
     {
-        if (actor.moving && !scene.GameLost)
+        if (!scene.PauseActive && !scene.GameLost)
         {
             if (ScoreClock.ElapsedTime.AsSeconds() >= 1)
             {
                 CurrentScore++;
                 ScoreClock.Restart();
             }
-        }
-        
-        if (scene.PauseActive)
-        {
-            actor.moving = false;
-        }
-        else
-        {
-            actor.moving = true;
         }
     }
 }

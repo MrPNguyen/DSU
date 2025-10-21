@@ -12,6 +12,7 @@ public class GameOverMenu : Menus
     private Text AskQuit;
     private Text YourScore;
     private ScoreManager Score;
+    private Text highscoreText;
     
     public GameOverMenu(ScoreManager score) : base("PauseMenu", "MainMenu")
     {
@@ -24,6 +25,7 @@ public class GameOverMenu : Menus
         YourScore = new Text();
         Zindex = 1;
         Score = score;
+        highscoreText = new Text();
     }
 
     public override void Create(Scene scene)
@@ -31,6 +33,7 @@ public class GameOverMenu : Menus
             base.Create(scene);
             scene.Spawn(NewGame);
             scene.Spawn(Quit);
+            Score.LoadhighScore();
 
             font = scene.Assets.LoadFont("PressStart2P", "fonts");
 
@@ -47,6 +50,12 @@ public class GameOverMenu : Menus
             YourScore.OutlineColor = Color.Black;
             YourScore.OutlineThickness = 2;
             YourScore.Position = new Vector2f(12, 290);
+            
+            highscoreText.Font = font;
+            highscoreText.DisplayedString = "HighScore";
+            highscoreText.CharacterSize = 25;
+            highscoreText.DisplayedString = $"HighScore: {Score.highScore}";
+            highscoreText.Position = new Vector2f(14, 340);
         
             AskPlayAgain.Font = font;
             AskPlayAgain.DisplayedString = "Play Again?";
@@ -63,14 +72,14 @@ public class GameOverMenu : Menus
             AskQuit.Position = new Vector2f(290, 410);
     }
     
-    public override void Render(RenderTarget target)
+    public override void Render(Scene scene, RenderTarget target)
     {
-        base.Render(target);
+        base.Render(scene, target);
         target.Draw(GameOver);
         target.Draw(AskPlayAgain);
         target.Draw(AskQuit);
         YourScore.DisplayedString = $"Your Score: {Score.CurrentScore}";
-        Console.WriteLine("Score: " + Score.CurrentScore); 
         target.Draw(YourScore);
+        target.Draw(highscoreText);
     }
 }

@@ -12,10 +12,9 @@ public class Buttons : Menus
     private string TextureName;
     private Vector2f SpawnPosition;
     private GameState State;
-    private string ButtonName;
+    public string ButtonName;
     private Vector2f ButtonScale;
-    private float ClickCooldown;
-    private bool clicked = false;
+    private bool isButtonPressed;
 
     public Buttons(string textureName, Vector2f spawnPosition, string folder, string buttonName, Vector2f buttonScale) : base(textureName, folder)
     {
@@ -30,11 +29,6 @@ public class Buttons : Menus
     public override void Update(Scene scene, float deltaTime)
     {
         base.Update(scene, deltaTime);
-        ClickCooldown -= deltaTime;
-        if (ClickCooldown < 0)
-        {
-            ClickCooldown = 0;
-        }
         Vector2i mousePosition = Mouse.GetPosition(Program.window);
         if (sprite.GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y))
         {
@@ -42,41 +36,42 @@ public class Buttons : Menus
            
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))
                 {
+                    if (!isButtonPressed)
+                    {
                         if (ButtonName == "NewGame")
                         {
                             SceneManager.LoadScene(GameState.NAMEMENU);
+                            isButtonPressed = true;
                         }
                         else if (ButtonName == "HighScores")
                         {
                             SceneManager.LoadScene(GameState.SCOREMENU);
+                            isButtonPressed = true;
                         }
                         else if (ButtonName == "Quit")
                         {
-                            if (ClickCooldown == 0)
-                            {
-                                SceneManager.LoadScene(GameState.QUIT);
-                                ClickCooldown = 0.2f;
-                            }
+                            SceneManager.LoadScene(GameState.QUIT);
+                            isButtonPressed = true;
                         }
                         else if (ButtonName == "ResumeGame")
                         {
                             scene.PauseActive = false;
+                            isButtonPressed = true;
                         }
                         else if (ButtonName == "ExitGame")
                         {
                             SceneManager.LoadScene(GameState.MAINMENU);
-                        }
-                        else if (ButtonName == "PlayButton")
-                        {
-                            SceneManager.LoadScene(GameState.GAME);
+                            isButtonPressed = true;
                         }
                         else if (ButtonName == "PlayAgainButton")
                         {
                             scene.ResetGame = true;
+                            isButtonPressed = true;
                         }
                         else if (ButtonName == "BackButton")
                         {
                             SceneManager.LoadScene(GameState.MAINMENU);
+                            isButtonPressed = true;
                         }
                         if (ButtonName == "PauseButton")
                         {
@@ -84,9 +79,14 @@ public class Buttons : Menus
                             {
                                 scene.Spawn(new PauseMenu("PauseMenu", "MainMenu"));
                                 scene.PauseActive = true;
+                                isButtonPressed = true;
                             }
                         }
-                    Mouse.SetPosition(new Vector2i(950, 350));
+                    }
+                    else
+                    {
+                        isButtonPressed = false;
+                    }
                 }
         }
         else

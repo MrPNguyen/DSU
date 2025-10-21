@@ -9,15 +9,13 @@ namespace Invaders.Classes
         public float spawnRate = 0.0f;
         private Actor actor;
         public Gui gui;
-        private ScoreManager scoreManager;
         private int ActiveScore;
         private bool GameOver = false;
 
         public SceneLoader()
         {
             actor = new Actor();
-            scoreManager = new ScoreManager(ActiveScore);
-            gui = new Gui(new ScoreManager(gui.Score.CurrentScore), new HealthManager());
+            gui = new Gui(new ScoreManager(), new HealthManager());
         }
         public void LoadGame(Scene scene)
         {
@@ -28,7 +26,7 @@ namespace Invaders.Classes
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(new Enemy());
-                scene.Spawn(gui);
+                scene.Spawn(new Gui(new ScoreManager(), new HealthManager()));
                 scene.Spawn(new Buttons("Pause", new Vector2f(10, 10), "MainMenu", "PauseButton", new Vector2f(0.2f, 0.2f)));
                 scene.Spawn(new Player(new HealthManager()));
                 scene.GameLost = false;
@@ -51,6 +49,8 @@ namespace Invaders.Classes
             }
             else if (SceneSwitch == GameState.SCOREMENU)
             {
+                scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
+                scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.QUIT)
@@ -74,8 +74,7 @@ namespace Invaders.Classes
         {
             if (scene.GameLost && !GameOver)
             {
-                if(scene.FindByType(out Gui gui))
-                scene.Spawn(new GameOverMenu(new ScoreManager(gui.Score.CurrentScore)));
+                scene.Spawn(new GameOverMenu(scene.Score));
                 actor.moving = false;
                 GameOver = true;
             }

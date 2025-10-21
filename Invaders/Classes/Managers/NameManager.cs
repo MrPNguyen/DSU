@@ -2,5 +2,6 @@
 
 public class NameManager
 {
-    public string name;
+    public string playerName = "";
 }
+

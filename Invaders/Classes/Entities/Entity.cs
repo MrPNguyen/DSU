@@ -45,7 +45,7 @@ namespace Invaders.Classes
             
         }
 
-        public virtual void Render(RenderTarget target)
+        public virtual void Render(Scene scene, RenderTarget target)
         {
             if (!Dead)
             {

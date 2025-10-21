@@ -42,15 +42,16 @@ public class PauseMenu : Menus
         scene.Spawn(ExitButton);
     }
 
-    public override void Render(RenderTarget target)
+    public override void Render(Scene scene, RenderTarget target)
     {
-        base.Render(target);
+        base.Render(scene, target);
         target.Draw(pauseText);
     }
     public override void Update(Scene scene, float deltaTime)
     {
         if (!scene.PauseActive)
         {
+            Console.WriteLine("Deactivated");
             scene.entities.Remove(this);
             scene.entities.Remove(ContinueButton);
             scene.entities.Remove(ExitButton);

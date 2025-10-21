@@ -11,13 +11,14 @@ namespace Invaders
         public const int ScreenH = 700;
         public static RenderWindow window;
         
-        static void Main(string[] args) {
-            using ( window = new RenderWindow(
+        static void Main(string[] args) 
+        {
+            using (window = new RenderWindow(
                        new VideoMode(ScreenW, ScreenH), "Invaders", Styles.Titlebar)) {
                 window.Closed += (o, e) => window.Close();
                 window.SetFramerateLimit(60);
                 Clock clock = new Clock();
-                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader());
+                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader(), new ScoreManager(), new HealthManager());
                 GameState lastState = SceneManager.state; 
                 scene.Loader.LoadGame(scene);
                 while (window.IsOpen) {
@@ -31,7 +32,7 @@ namespace Invaders
                     }
                     scene.UpdateAll(scene, deltaTime);
                     window.Clear();
-                    scene.RenderAll(window);
+                    scene.RenderAll(scene, window);
                     window.Display(); 
                 }
             }
@@ -42,8 +43,9 @@ namespace Invaders
 //Problems:
 //Fix Game reset Crash. Done
 //Fix Game over buttons not highlighting. Done
-//Fix high score in game over screen
+//Fix high score in game over screen. Done
 //Fix high score list in main menu
+//Fix saving scores.
 //Fix my life
 //Fix audio sometimes cuts when going from pause menu to main menu
 //

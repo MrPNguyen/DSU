@@ -10,7 +10,8 @@ public class NameMenu : Menus
     private Buttons Back;
     private Text questionText;
     private Text Name;
-    private Text Underscore;
+    private NameManager input;
+    
     public NameMenu(string textureName, string folder) : base(textureName, folder)
     {
         sprite.TextureRect = new IntRect(192, 128, 64, 64);
@@ -20,17 +21,14 @@ public class NameMenu : Menus
         Back = new Buttons("Back", new Vector2f(10, 600), "MainMenu", "BackButton", new Vector2f(0.4f, 0.4f));
         questionText = new Text();
         Name = new Text();
-        Underscore = new Text();
-        Program.window.KeyPressed += (sender, args) =>
-        {
-            if (args.Code >= Keyboard.Key.A && args.Code <= Keyboard.Key.Z)
-            {
-                Name.DisplayedString = args.Code.ToString();
-            }
-        };
-
+        input = new NameManager();
+        Program.window.KeyPressed += TypeThis;
     }
-
+    
+    public void DisplayHighscore(RenderTarget target)
+    {
+        
+    }
     public override void Create(Scene scene)
     {
         base.Create(scene);
@@ -48,29 +46,45 @@ public class NameMenu : Menus
         Name.CharacterSize = 40;
         Name.OutlineColor = Color.Black;
         Name.OutlineThickness = 2;
-        Name.DisplayedString = "Name";
         Name.Position = new Vector2f(200, 330);
         
-        Underscore.Font = font;
-        Underscore.CharacterSize = 40;
-        Underscore.OutlineColor = Color.Black;
-        Underscore.OutlineThickness = 2;
-        Underscore.DisplayedString = "_______";
-        Underscore.Position = new Vector2f(200, 340);
+        
         
         scene.Spawn(Play);
         scene.Spawn(Back);
     }
-    public override void Render(RenderTarget target)
+    public override void Render(Scene scene, RenderTarget target)
     {
-        base.Render(target);
+        base.Render(scene, target);
         target.Draw(questionText);
         target.Draw(Name);
-        target.Draw(Underscore);
     }
 
     public override void Update(Scene scene, float deltaTime)
     {
+        Name.DisplayedString = input.playerName.PadRight(7, '_');
+        if (Keyboard.IsKeyPressed(Keyboard.Key.Enter))
+        {
+            scene.Score.playerName = input.playerName;
+            SceneManager.LoadScene(GameState.GAME);
+            Console.WriteLine(scene.Score.playerName);
+        }
+        //Have text that says "Press Enter To Begin The Invasion!"
+      
     }
     
+    private void TypeThis(object? ender, KeyEventArgs args)
+    {
+        if (args.Code >= Keyboard.Key.A && args.Code <= Keyboard.Key.Z && input.playerName.Length < 7)
+        {
+           input.playerName += args.Code.ToString();
+        }
+        if (args.Code == Keyboard.Key.Backspace)
+        {
+            if (input.playerName.Length > 0)
+            {
+                input.playerName = input.playerName.Substring(0, input.playerName.Length - 1);
+            }
+        }
+    }
 }
