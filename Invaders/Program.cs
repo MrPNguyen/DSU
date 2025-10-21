@@ -40,10 +40,10 @@ namespace Invaders
 }
 
 //Problems:
-//Fix Game reset Crash
+//Fix Game reset Crash. Done
+//Fix Game over buttons not highlighting. Done
 //Fix high score in game over screen
 //Fix high score list in main menu
 //Fix my life
 //Fix audio sometimes cuts when going from pause menu to main menu
-//Fix Game over buttons not highlighting
 //
