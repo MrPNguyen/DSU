@@ -113,12 +113,18 @@ namespace Invaders.Classes
 
         protected override void CollideWith(Scene scene, Entity e)
         {
+            if (Dead)
+            {
+                return;
+            }
+            
             if (e is Bullet bullet &&  bullet.Y == -1)
             {
                 Dead = true;
                 contrail.Dead = true;
-                scene.Events.PublishGainScore(10, scene);
                 bullet.Dead = true;
+                
+                scene.Events.PublishGainScore(10, scene);
                 Explosion explosion = new Explosion(new Vector2f(sprite.Position.X-50f, sprite.Position.Y-25));
                 scene.Spawn(explosion);
             }

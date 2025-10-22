@@ -30,11 +30,19 @@ namespace Invaders.Classes
             scene.Health.currentHealth = scene.Health.maxHealth;
             scene.Events.LoseHealth += scene.Health.OnLoseHealth;
             scene.Events.GainScore += scene.Score.OnScoreGain;
-            scene.Score.LoadhighScore();
+            Console.WriteLine("Gui subscribed to GainScore");
+            scene.High.LoadhighScores();
         }
 
-       
-        
+        public override void Destroy(Scene scene)
+        {
+            base.Destroy(scene);
+            scene.Events.LoseHealth -= scene.Health.OnLoseHealth;
+            scene.Events.GainScore -= scene.Score.OnScoreGain;
+            Console.WriteLine("Gui unsubscribed from GainScore");
+        }
+
+
         public override void Render(Scene scene, RenderTarget target)
         {
             sprite.Position = new Vector2f(55, 5);
@@ -49,17 +57,11 @@ namespace Invaders.Classes
             
             }
             scoreText.DisplayedString = $"Score: {scene.Score.CurrentScore}";
-            highScoreText.DisplayedString = $"HighScore: {scene.Score.highScore}";
            
             scoreText.Position = new Vector2f(
                 490 - scoreText.GetGlobalBounds().Width, 8
             );
-            highScoreText.Position = new Vector2f(
-                490 - highScoreText.GetGlobalBounds().Width, 32
-            );
             target.Draw(scoreText);
-            target.Draw(highScoreText);
-           
         }
        
         public override void Update(Scene scene, float deltaTime)

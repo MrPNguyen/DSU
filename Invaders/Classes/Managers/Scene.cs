@@ -13,11 +13,12 @@ namespace Invaders.Classes
         public readonly SceneLoader Loader;
         public readonly ScoreManager Score;
         public readonly HealthManager Health;
+        public readonly HighScoreManager High;
         public bool GameLost;
         public bool PauseActive = false;
         public bool ResetGame = false;
        
-        public Scene(AssetManager assets, EventManager events, SceneLoader loader, ScoreManager score, HealthManager health)
+        public Scene(AssetManager assets, EventManager events, SceneLoader loader, ScoreManager score, HealthManager health, HighScoreManager high)
         {
             entities = new List<Entity>();
             Assets = assets;
@@ -25,6 +26,7 @@ namespace Invaders.Classes
             Loader = loader;
             Score = score;
             Health = health;
+            High = high;
             events.SpawnBullet += SpawnBullet; 
         }
 

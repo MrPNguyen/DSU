@@ -18,7 +18,7 @@ namespace Invaders
                 window.Closed += (o, e) => window.Close();
                 window.SetFramerateLimit(60);
                 Clock clock = new Clock();
-                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader(), new ScoreManager(), new HealthManager());
+                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader(), new ScoreManager(), new HealthManager(), new HighScoreManager());
                 GameState lastState = SceneManager.state; 
                 scene.Loader.LoadGame(scene);
                 while (window.IsOpen) {
@@ -41,11 +41,8 @@ namespace Invaders
 }
 
 //Problems:
-//Fix Game reset Crash. Done
-//Fix Game over buttons not highlighting. Done
-//Fix high score in game over screen. Done
-//Fix saving scores. Done
-//Fix high score list in main menu
-//Fix my life
+//Fix saving highscores
+//Fix limit to amount of highscores possible to save
+//Fix highscores in descending order
 //Fix audio sometimes cuts when going from pause menu to main menu
-//
+//Fix my life

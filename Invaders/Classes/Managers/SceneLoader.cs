@@ -7,15 +7,7 @@ namespace Invaders.Classes
     {
         public float spawnCooldown = 0.0f;
         public float spawnRate = 0.0f;
-        private Actor actor;
-        public Gui gui;
         private bool GameOver = false;
-
-        public SceneLoader()
-        {
-            actor = new Actor();
-            gui = new Gui(new ScoreManager(), new HealthManager());
-        }
         public void LoadGame(Scene scene)
         {
             GameState SceneSwitch = SceneManager.state;
@@ -23,10 +15,11 @@ namespace Invaders.Classes
             {
                 scene.Clear();
                 scene.Score.CurrentScore = -1;
+                scene.Health.currentHealth = scene.Health.maxHealth;
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(new Enemy());
-                scene.Spawn(new Gui(new ScoreManager(), new HealthManager()));
+                scene.Spawn(new Gui(scene.Score, scene.Health));
                 scene.Spawn(new Buttons("Pause", new Vector2f(10, 10), "MainMenu", "PauseButton", new Vector2f(0.2f, 0.2f)));
                 scene.Spawn(new Player(new HealthManager()));
                 scene.GameLost = false;
@@ -81,9 +74,10 @@ namespace Invaders.Classes
         
         public void GameLost(Scene scene)
         {
+            scene.Score.LoadhighScore();
             if (scene.GameLost)
             {
-                Console.WriteLine($"Your score: {scene.Score.CurrentScore} & your highscore {scene.Score.highScore}");
+                //Console.WriteLine($"Your score: {scene.Score.CurrentScore} & your highscore {scene.High.highScore}");
                 if (scene.Score.CurrentScore > scene.Score.highScore)
                 {
                     SceneManager.LoadScene(GameState.NEWHIGHSCORE);

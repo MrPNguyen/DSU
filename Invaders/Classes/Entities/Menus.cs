@@ -16,4 +16,10 @@ public class Menus : Entity
         TextureName = textureName;
         Folder = folder;
     }
+
+    public override void Create(Scene scene)
+    {
+        base.Create(scene);
+        font = scene.Assets.LoadFont("PressStart2P", "fonts");
+    }
 }

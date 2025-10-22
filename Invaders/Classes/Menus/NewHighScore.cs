@@ -47,12 +47,18 @@ namespace Invaders.Classes
         
         Program.window.KeyPressed += TypeThis;
     }
-    
+
+    public override void Destroy(Scene scene)
+    {
+        base.Destroy(scene);
+        Program.window.KeyPressed -= TypeThis;
+
+    }
+
     public override void Create(Scene scene)
     {
         base.Create(scene);
         sprite.Position = new Vector2f(100, 340);
-        font = scene.Assets.LoadFont("PressStart2P", "fonts");
         foreach (Text text in texts)
         {
             text.Font = font;
@@ -68,7 +74,7 @@ namespace Invaders.Classes
         congratsText.CharacterSize = 14;
         congratsText.Position = new Vector2f(25, 160);
 
-        displayHighScore.DisplayedString = $"High Score: {scene.Score.highScore}";
+        displayHighScore.DisplayedString = $"High Score: {scene.Score.CurrentScore}";
         displayHighScore.CharacterSize = 14;
         displayHighScore.Position = new Vector2f(165, 200);
         
@@ -85,6 +91,7 @@ namespace Invaders.Classes
         instructionsText.Position = new Vector2f(25, 440);
 
         scene.Spawn(Back);
+        scene.Score.LoadhighScore();
     }
     public override void Render(Scene scene, RenderTarget target)
     {
@@ -103,16 +110,15 @@ namespace Invaders.Classes
         if (Keyboard.IsKeyPressed(Keyboard.Key.Enter))
         {
             scene.Score.playerName = input.playerName;
-            SceneManager.LoadScene(GameState.MAINMENU);
-            
             if (scene.Score.CurrentScore > scene.Score.highScore)
             { 
                 scene.Score.highScore = scene.Score.CurrentScore;
-                Console.WriteLine($"OnScoreGain: {scene.Score.highScore}");
                 scene.Score.SaveHighScore();
-                scene.Score.SaveHighScores();
-                //SaveHighScore elsewhere, when game is over and currentscore is higher than highscore
             }
+            //scene.High.Scores.Add(input.playerName, scene.Score.highScore);
+            //Figure out a different way to save highscores using List<> (and possibly struct)
+            scene.High.SaveHighScores();
+            SceneManager.LoadScene(GameState.MAINMENU);
         }
     }
     

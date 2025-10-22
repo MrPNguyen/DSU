@@ -2,7 +2,7 @@
 {
     public static class SceneManager
     {
-        public static GameState state { get; set; } = GameState.NEWHIGHSCORE;
+        public static GameState state { get; set; } = GameState.MAINMENU;
 
         public static void LoadScene(GameState newState)
         {
