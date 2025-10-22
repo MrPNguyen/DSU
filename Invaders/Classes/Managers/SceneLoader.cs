@@ -9,7 +9,6 @@ namespace Invaders.Classes
         public float spawnRate = 0.0f;
         private Actor actor;
         public Gui gui;
-        private int ActiveScore;
         private bool GameOver = false;
 
         public SceneLoader()
@@ -23,6 +22,7 @@ namespace Invaders.Classes
             if (SceneSwitch == GameState.GAME)
             {
                 scene.Clear();
+                scene.Score.CurrentScore = -1;
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(new Enemy());
@@ -39,18 +39,28 @@ namespace Invaders.Classes
                 scene.Spawn(new MainMenu());
                 scene.GameLost = false;
             }
-            else if (SceneSwitch == GameState.NAMEMENU)
+            else if (SceneSwitch == GameState.NEWHIGHSCORE)
             {
                 scene.Clear();
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
-                scene.Spawn(new NameMenu("tileset", "tilesets"));
+                scene.Spawn(new NewHighScore("tileset", "tilesets"));
+                scene.GameLost = false;
+            }
+            else if (SceneSwitch == GameState.YOULOSE)
+            {
+                scene.Clear();
+                scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
+                scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
+                scene.Spawn(new GameOverMenu(new ScoreManager()));
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.SCOREMENU)
             {
+                scene.Clear();
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
+                scene.Spawn(new ScoreMenu("PauseMenu", "MainMenu"));
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.QUIT)
@@ -66,17 +76,24 @@ namespace Invaders.Classes
                 scene.Clear();
                 LoadGame(scene);
                 scene.GameLost = false;
-                GameOver = false;
             }
         }
         
         public void GameLost(Scene scene)
         {
-            if (scene.GameLost && !GameOver)
+            if (scene.GameLost)
             {
-                scene.Spawn(new GameOverMenu(scene.Score));
-                actor.moving = false;
-                GameOver = true;
+                Console.WriteLine($"Your score: {scene.Score.CurrentScore} & your highscore {scene.Score.highScore}");
+                if (scene.Score.CurrentScore > scene.Score.highScore)
+                {
+                    SceneManager.LoadScene(GameState.NEWHIGHSCORE);
+
+                }
+                else
+                {
+                    SceneManager.LoadScene(GameState.YOULOSE);
+
+                }
             }
         }
         public void SpawnEnemies(Scene scene)

@@ -126,7 +126,7 @@ namespace Invaders.Classes
                 else
                 {
                     AnimationDone = true;
-                    scene.entities.Remove(this);
+                    Dead = true;
                 }
             }
         }

@@ -8,10 +8,12 @@ namespace Invaders.Classes
     public class Gui : Entity
     {
         private Text scoreText;
+        private Text highScoreText;
         private Font font;
         public Gui(ScoreManager score, HealthManager health) : base("pacman", "tilesets")
         {
             scoreText = new Text();
+            highScoreText = new Text();
         }
         
         public override void Create(Scene scene)
@@ -20,11 +22,15 @@ namespace Invaders.Classes
             sprite.TextureRect = new IntRect(72, 36, 18, 18);
             font = scene.Assets.LoadFont("PressStart2P", "fonts");
             scoreText.Font = font;
+            highScoreText.Font = font;
             scoreText.DisplayedString = "Score";
+            highScoreText.DisplayedString = "HighScore";
             scoreText.CharacterSize = 23;
+            highScoreText.CharacterSize = 23;
             scene.Health.currentHealth = scene.Health.maxHealth;
             scene.Events.LoseHealth += scene.Health.OnLoseHealth;
             scene.Events.GainScore += scene.Score.OnScoreGain;
+            scene.Score.LoadhighScore();
         }
 
        
@@ -43,11 +49,16 @@ namespace Invaders.Classes
             
             }
             scoreText.DisplayedString = $"Score: {scene.Score.CurrentScore}";
+            highScoreText.DisplayedString = $"HighScore: {scene.Score.highScore}";
            
             scoreText.Position = new Vector2f(
                 490 - scoreText.GetGlobalBounds().Width, 8
             );
+            highScoreText.Position = new Vector2f(
+                490 - highScoreText.GetGlobalBounds().Width, 32
+            );
             target.Draw(scoreText);
+            target.Draw(highScoreText);
            
         }
        

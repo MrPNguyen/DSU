@@ -4,8 +4,9 @@ public enum GameState
 {
     GAME,
     MAINMENU,
-    NAMEMENU,
+    NEWHIGHSCORE,
+    YOULOSE,
     SCOREMENU,
     QUIT,
-    PAUSE,
+    PAUSE
 }

@@ -6,7 +6,7 @@ namespace Invaders.Classes;
 public class GameOverMenu : Menus
 {
     private Text GameOver;
-    private Buttons NewGame;
+    private Buttons PlayAgain;
     private Buttons Quit;
     private Text AskPlayAgain;
     private Text AskQuit;
@@ -16,8 +16,8 @@ public class GameOverMenu : Menus
     
     public GameOverMenu(ScoreManager score) : base("PauseMenu", "MainMenu")
     {
-        sprite.Color = new Color(0, 0, 0);
-        NewGame = new Buttons("PlayAgainButton", new Vector2f(40, 450), "MainMenu", "PlayAgainButton", new Vector2f(0.3f, 0.3f));
+        sprite.Color = new Color(255, 255, 255, 0);
+        PlayAgain = new Buttons("PlayAgainButton", new Vector2f(40, 450), "MainMenu", "PlayAgainButton", new Vector2f(0.3f, 0.3f));
         Quit = new Buttons("QuitButton", new Vector2f(270, 450), "MainMenu", "ExitGame", new Vector2f(0.3f, 0.3f));
         GameOver = new Text();
         AskPlayAgain = new Text();
@@ -31,7 +31,7 @@ public class GameOverMenu : Menus
     public override void Create(Scene scene)
     {
             base.Create(scene);
-            scene.Spawn(NewGame);
+            scene.Spawn(PlayAgain);
             scene.Spawn(Quit);
             Score.LoadhighScore();
 
@@ -54,7 +54,7 @@ public class GameOverMenu : Menus
             highscoreText.Font = font;
             highscoreText.DisplayedString = "HighScore";
             highscoreText.CharacterSize = 25;
-            highscoreText.DisplayedString = $"HighScore: {Score.highScore}";
+            highscoreText.DisplayedString = $"HighScore: {scene.Score.highScore}";
             highscoreText.Position = new Vector2f(14, 340);
         
             AskPlayAgain.Font = font;
@@ -78,8 +78,12 @@ public class GameOverMenu : Menus
         target.Draw(GameOver);
         target.Draw(AskPlayAgain);
         target.Draw(AskQuit);
-        YourScore.DisplayedString = $"Your Score: {Score.CurrentScore}";
+        YourScore.DisplayedString = $"Your Score: {scene.Score.CurrentScore}";
         target.Draw(YourScore);
         target.Draw(highscoreText);
+        
+        Console.WriteLine(scene.Score.CurrentScore);
+        Console.WriteLine(scene.Score.highScore);
     }
+    
 }

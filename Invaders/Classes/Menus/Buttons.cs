@@ -25,6 +25,10 @@ public class Buttons : Menus
         sprite.Position = SpawnPosition;
         sprite.Scale = ButtonScale;
         Zindex = 1;
+        if (Mouse.IsButtonPressed(Mouse.Button.Left))
+        {
+            isButtonPressed = true;
+        }
     }
     public override void Update(Scene scene, float deltaTime)
     {
@@ -40,38 +44,31 @@ public class Buttons : Menus
                     {
                         if (ButtonName == "NewGame")
                         {
-                            SceneManager.LoadScene(GameState.NAMEMENU);
-                            isButtonPressed = true;
+                            SceneManager.LoadScene(GameState.GAME);
                         }
                         else if (ButtonName == "HighScores")
                         {
                             SceneManager.LoadScene(GameState.SCOREMENU);
-                            isButtonPressed = true;
                         }
                         else if (ButtonName == "Quit")
                         {
                             SceneManager.LoadScene(GameState.QUIT);
-                            isButtonPressed = true;
                         }
                         else if (ButtonName == "ResumeGame")
                         {
                             scene.PauseActive = false;
-                            isButtonPressed = true;
                         }
                         else if (ButtonName == "ExitGame")
                         {
                             SceneManager.LoadScene(GameState.MAINMENU);
-                            isButtonPressed = true;
                         }
                         else if (ButtonName == "PlayAgainButton")
                         {
-                            scene.ResetGame = true;
-                            isButtonPressed = true;
+                           SceneManager.LoadScene(GameState.GAME);
                         }
                         else if (ButtonName == "BackButton")
                         {
                             SceneManager.LoadScene(GameState.MAINMENU);
-                            isButtonPressed = true;
                         }
                         if (ButtonName == "PauseButton")
                         {
@@ -79,20 +76,20 @@ public class Buttons : Menus
                             {
                                 scene.Spawn(new PauseMenu("PauseMenu", "MainMenu"));
                                 scene.PauseActive = true;
-                                isButtonPressed = true;
                             }
                         }
                     }
-                    else
-                    {
-                        isButtonPressed = false;
-                    }
+
+                    isButtonPressed = true;
+                }
+                else
+                {
+                    isButtonPressed = false;
                 }
         }
         else
         {
             sprite.Color = Color.White;
-
         }
     }
 }

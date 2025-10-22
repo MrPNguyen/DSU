@@ -33,7 +33,6 @@ namespace Invaders.Classes
             if (sprite.Position.Y <= 0 || sprite.Position.Y >= Program.ScreenH)
             {
                 Dead = true;
-                scene.entities.Remove(this);
             }
         }
         

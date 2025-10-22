@@ -52,9 +52,9 @@ public class PauseMenu : Menus
         if (!scene.PauseActive)
         {
             Console.WriteLine("Deactivated");
-            scene.entities.Remove(this);
-            scene.entities.Remove(ContinueButton);
-            scene.entities.Remove(ExitButton);
+            Dead = true;
+            ContinueButton.Dead = true;
+            ExitButton.Dead = true;
         }
     }
 }

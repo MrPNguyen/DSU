@@ -173,7 +173,6 @@ namespace Invaders.Classes
             {
                 scene.Events.PublishLoseHealth(1, scene);
                 bullet.Dead = true;
-                scene.entities.Remove(bullet);
                 isInvulnerable = true;
                 invulnerableTimer = invulnerableDuration;
             }

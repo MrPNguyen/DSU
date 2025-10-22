@@ -7,7 +7,7 @@ namespace Invaders.Classes
 {
    public sealed class Scene
     {
-        public List<Entity> entities;
+        private List<Entity> entities;
         public readonly AssetManager Assets;
         public readonly EventManager Events;
         public readonly SceneLoader Loader;
@@ -75,6 +75,24 @@ namespace Invaders.Classes
                 return;
             }
             Loader.IncreaseSpawnRate(scene);
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                //Console.WriteLine($"entities.Count: {entities.Count}");
+                //Console.WriteLine($"i: {i}");
+                Entity entity = entities[i];
+                if (entity.Dead == true)
+                {
+                    entities.Remove(entity);
+                }
+            }
+
+            foreach (Entity entity in entities)
+            {
+                if (entity.Dead)
+                {
+                    entities.Remove(entity);
+                }
+            }
         }
 
         public void RenderAll(Scene scene, RenderTarget target)
@@ -87,21 +105,7 @@ namespace Invaders.Classes
                 else i++;
             }
         }
-      
-        public bool FindByType<T>(out T found) where T : Entity
-        {
-            foreach (Entity entity in entities)
-            {
-                if (!entity.Dead && entity is T typed)
-                {
-                    found = typed;
-                    return true;
-                }
-            }
-
-            found = default(T);
-            return false;
-        }
+        
         public IEnumerable<Entity> FindIntersects(FloatRect bounds)
         {
             int lastEntity = entities.Count - 1;
