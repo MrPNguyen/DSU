@@ -7,16 +7,12 @@ using SFML.Window;
 
 namespace Invaders.Classes
 {
-    public class Enemy : Actor
+    public sealed class Enemy : Actor
     {
-        private Vector2f size;
         private Random rand;
         private float spawnPoint;
-        public Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
+        private Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
         private Vector2f SpawnPos;
-        public float ShotCooldown;
-        private Vector2f newPos;
-        public Contrail contrail;
         private int Direction = 2;
 
         public Enemy()
@@ -79,10 +75,7 @@ namespace Invaders.Classes
                 if (ShotCooldown == 0)
                 {
                     scene.Events.PublishSpawnBullet(newPos, 1, scene);
-                    //Sound Source: https://kenney.nl/assets/sci-fi-sounds
-                    //Credit: CC0
-                    SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
-                    Sound shot =  new Sound(sound);
+                    Sound shot =  new Sound(scene.Assets.LoadSound("PlayerShot", "sounds"));
                     shot.Play();
                     if (ShotCooldown > 0)
                     {

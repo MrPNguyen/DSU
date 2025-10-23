@@ -7,8 +7,8 @@ namespace Invaders.Classes;
 
 public class Menus : Entity
 {
-    public Font font;
-    public List<Text> texts;
+    protected Font font;
+    protected List<Text> texts;
 
     public Menus(string textureName, string folder) : base(textureName, folder)
     {

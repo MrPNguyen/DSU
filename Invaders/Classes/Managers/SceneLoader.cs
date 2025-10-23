@@ -3,11 +3,10 @@ using SFML.Window;
 
 namespace Invaders.Classes
 {
-    public class SceneLoader
+    public sealed class SceneLoader
     {
         public float spawnCooldown;
         public float spawnRate;
-        private bool GameOver = false;
         private Buttons pauseButton;
 
         public SceneLoader()
@@ -26,7 +25,7 @@ namespace Invaders.Classes
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
                 scene.Spawn(pauseButton);
                 scene.Spawn(new Enemy());
-                scene.Spawn(new Gui(scene.Score, scene.Health));
+                scene.Spawn(new Gui());
                 scene.Spawn(new Player());
                 scene.GameLost = false;
             }
@@ -51,7 +50,7 @@ namespace Invaders.Classes
                 scene.Clear();
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
-                scene.Spawn(new GameOverMenu(new ScoreManager()));
+                scene.Spawn(new GameOverMenu());
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.SCOREMENU)

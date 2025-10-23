@@ -3,7 +3,7 @@ using SFML.System;
 
 namespace Invaders.Classes;
 
-public class GameOverMenu : Menus
+public sealed class GameOverMenu : Menus
 {
     private Text GameOver;
     private Buttons PlayAgain;
@@ -11,10 +11,9 @@ public class GameOverMenu : Menus
     private Text AskPlayAgain;
     private Text AskQuit;
     private Text YourScore;
-    private ScoreManager Score;
     private Text highscoreText;
     
-    public GameOverMenu(ScoreManager score) : base("PauseMenu", "MainMenu")
+    public GameOverMenu() : base("PauseMenu", "MainMenu")
     {
         sprite.Color = new Color(255, 255, 255, 0);
         PlayAgain = new Buttons("PlayAgainButton", new Vector2f(40, 450), "MainMenu", "PlayAgainButton", new Vector2f(0.3f, 0.3f));
@@ -24,7 +23,6 @@ public class GameOverMenu : Menus
         AskQuit = new Text();
         YourScore = new Text();
         Zindex = 1;
-        Score = score;
         highscoreText = new Text();
     }
 
@@ -81,9 +79,5 @@ public class GameOverMenu : Menus
         YourScore.DisplayedString = $"Your Score: {scene.Score.CurrentScore}";
         target.Draw(YourScore);
         target.Draw(highscoreText);
-        
-        Console.WriteLine(scene.Score.CurrentScore);
-        Console.WriteLine(scene.Score.highScore);
     }
-    
 }

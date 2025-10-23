@@ -5,12 +5,12 @@ using System;
 
 namespace Invaders.Classes
 {
-    public class Gui : Entity
+    public sealed class Gui : Entity
     {
         private Text scoreText;
         private Text highScoreText;
         private Font font;
-        public Gui(ScoreManager score, HealthManager health) : base("pacman", "tilesets")
+        public Gui() : base("pacman", "tilesets")
         {
             scoreText = new Text();
             highScoreText = new Text();

@@ -1,6 +1,6 @@
 ﻿namespace Invaders.Classes;
 
-public class HealthManager
+public sealed class HealthManager
 {
     public int maxHealth = 3;
     public int currentHealth;

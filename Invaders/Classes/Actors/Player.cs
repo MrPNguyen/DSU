@@ -6,20 +6,14 @@ using SFML.Window;
 
 namespace Invaders.Classes
 {
-    public class Player : Actor
+    public sealed class Player : Actor
     {
-        //Sound Source: https://kenney.nl/assets/sci-fi-sounds
-        //Credit: CC0
-        public float ShotCooldown;
-        public Vector2f size;
         private bool isInvulnerable;
         private float invulnerableTimer;
         private const float invulnerableDuration = 2.0f; // 4 seconds
-        public Color normalColor;
-        public Vector2f PlayerSpawn;
-        public bool ableToShoot;
-        private Vector2f newPos;
-        private Contrail contrail;
+        private Color normalColor;
+        private Vector2f PlayerSpawn;
+        private bool ableToShoot;
         public Player()
         {
             sprite.TextureRect = new IntRect(192, 128, 64, 64);
@@ -129,9 +123,12 @@ namespace Invaders.Classes
                         if (ShotCooldown == 0)
                         {
                             scene.Events.PublishSpawnBullet(newPos, -1, scene);
-                            SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
-                            Sound shot =  new Sound(sound);
+                            Sound shot =  new Sound(scene.Assets.LoadSound("PlayerShot", "sounds"));
                             shot.Play();
+                            if (shot.Status == SoundStatus.Stopped)
+                            {
+                                shot.Dispose();
+                            }
                             if (ShotCooldown > 0)
                             {
                                 return;

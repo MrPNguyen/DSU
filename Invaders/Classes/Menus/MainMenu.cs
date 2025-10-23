@@ -3,9 +3,9 @@ using SFML.System;
 
 namespace Invaders.Classes;
 
-public class MainMenu : Menus
+public sealed class MainMenu : Menus
 {
-    public Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
+    private Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
     private Vector2f newPos;
     private float speed;
     private Buttons HighScoreButton;

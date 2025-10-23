@@ -1,13 +1,12 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
 
 namespace Invaders.Classes
 {
-    public class Bullet : Actor
+    public sealed class Bullet : Actor
     {
         public readonly float Y;
-        public const float BulletSpeed = 300f;
+        private const float BulletSpeed = 300f;
         public Bullet(Vector2f pos, float y)
         {
             sprite.TextureRect = new IntRect(64, 0, 64, 64);
@@ -19,7 +18,7 @@ namespace Invaders.Classes
         public override void Update(Scene scene, float deltaTime)
         {
             base.Update(scene, deltaTime);
-            Vector2f newPos = sprite.Position;
+            newPos = sprite.Position;
             newPos.Y += Y * BulletSpeed * deltaTime;
             sprite.Position = newPos;
             if (Y == 1)

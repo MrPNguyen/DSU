@@ -7,12 +7,11 @@ using SFML.Window;
 
 namespace Invaders.Classes
 {
-    public class Explosion : Entity
+    public sealed class Explosion : Entity
     {
-        //Tilesheet Source: https://opengameart.org/content/explosion-tilesets
-        //Credit to elnineo
+       
         private static int tileSize = 256;
-        public Vector2f size;
+        private Vector2f size;
         private List<IntRect> explosions = new List<IntRect>()
         {
             new IntRect(0, 0, tileSize, tileSize),

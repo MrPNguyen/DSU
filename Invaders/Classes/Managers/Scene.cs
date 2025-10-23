@@ -16,7 +16,7 @@ namespace Invaders.Classes
         public HighScoreManager High;
         public bool GameLost;
         public bool PauseActive = false;
-        public bool ResetGame;
+        private bool ResetGame;
        
         public Scene(AssetManager assets, EventManager events, SceneLoader loader, ScoreManager score, HealthManager health, HighScoreManager high)
         {

@@ -6,7 +6,7 @@ using SFML.Window;
 
 namespace Invaders.Classes
 {
-        public class NewHighScore : Menus
+    public sealed class NewHighScore : Menus
     {
         private Buttons Play;
         private Buttons Back;

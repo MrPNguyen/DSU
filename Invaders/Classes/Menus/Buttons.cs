@@ -5,13 +5,12 @@ using SFML.Window;
 
 namespace Invaders.Classes;
 
-public class Buttons : Menus
+public sealed class Buttons : Menus
 {
-    //Buttons asset source: https://nectanebo.itch.io/menu-buttons
-    //Credit to: Nectanebo 
+    
     private Vector2f SpawnPosition;
     private GameState State;
-    public string ButtonName;
+    private string ButtonName;
     private Vector2f ButtonScale;
     private bool isButtonPressed;
 
@@ -33,8 +32,8 @@ public class Buttons : Menus
         base.Update(scene, deltaTime);
         Vector2i mousePosition = Mouse.GetPosition(Program.window);
         if (sprite.GetGlobalBounds().Contains(mousePosition.X, mousePosition.Y))
-        {
-            sprite.Color = sprite.Color = new Color(100, 100, 100);
+        { 
+            sprite.Color = new Color(100, 100, 100);
            
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))
                 {

@@ -6,7 +6,7 @@ namespace Invaders.Classes
 
     public delegate void PositionChangedEvent(Vector2f pos, float Y, Scene scene);
     
-    public class EventManager
+    public sealed class EventManager
     {
         private int scoreGained;
         private int healthLost;

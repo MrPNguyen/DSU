@@ -5,10 +5,8 @@ using Color = SFML.Graphics.Color;
 
 namespace Invaders.Classes;
 
-public class PauseMenu : Menus
+public sealed class PauseMenu : Menus
 {
-    //PauseMenu asset source: https://gummypopcat.itch.io/2d-ui-assets
-    //Credit to gummypopcat
     private Buttons ExitButton;
     private Buttons ContinueButton;
     private Text pauseText;

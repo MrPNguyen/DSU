@@ -4,15 +4,11 @@ using SFML.System;
 
 namespace Invaders.Classes
 {
-    public class Background : Entity
+    public sealed class Background : Entity
     {
-        //Background image source: https://dinvstudio.itch.io/dynamic-space-background-lite-free
-        //Credit to DinVStudio
-        //Music source: https://opengameart.org/content/kind-of-boss
-        //Credit to G_P, song name: Kind Of Boss
-        public const float ScrollSpeed = 200f;
-        public Vector2f spawn;
-        private SoundBuffer sound;
+       
+        private const float ScrollSpeed = 200f;
+        private Vector2f spawn;
         private Sound music;
         public Background(Vector2f Spawn, string TextureName, string folder) : base(TextureName, folder)
         {
@@ -26,8 +22,7 @@ namespace Invaders.Classes
         public override void Create(Scene scene)
         {
             base.Create(scene);
-            sound = new SoundBuffer( scene.Assets.LoadMusic("boss", "sounds"));
-            music = new Sound(sound);
+            music = new Sound(scene.Assets.LoadMusic("boss", "sounds"));
             music.Play();
             music.Volume = 30f;
             music.Loop = true;
@@ -38,7 +33,6 @@ namespace Invaders.Classes
             base.Destroy(scene);
             music.Stop();
             music.Dispose();
-            sound.Dispose();
         }
 
         public override void Update(Scene scene, float deltaTime)

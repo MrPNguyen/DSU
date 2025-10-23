@@ -3,12 +3,11 @@ using SFML.Graphics;
 
 namespace Invaders.Classes
 {
-    public class AssetManager
+    public sealed class AssetManager
     {
         private readonly Dictionary<string, Texture> textures;
         private readonly Dictionary<string, Font> fonts;
         private readonly Dictionary<string, SoundBuffer> sounds;
-        public bool soundFinished;
 
         public AssetManager()
         {

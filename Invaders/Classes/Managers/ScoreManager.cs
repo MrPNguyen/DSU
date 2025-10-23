@@ -5,7 +5,7 @@ using SFML.System;
 
 namespace Invaders.Classes;
 
-public class ScoreManager
+public sealed class ScoreManager
 {
     public int CurrentScore;
     public int highScore;

@@ -7,7 +7,7 @@ using SFML.Window;
 
 namespace Invaders.Classes
 {
-    public class Contrail : Entity
+    public sealed class Contrail : Entity
     {
         private Actor FollowTarget;
         

@@ -7,12 +7,15 @@ namespace Invaders.Classes
 {
     public class Actor : Entity
     {
-        //Tilesheet source for player/Enemy: https://kenney.nl/assets/simple-space
-        //Creative Commons CC0
-        public float speed;
-        public bool moving;
+        
+        protected float speed;
+        protected bool moving;
         public int direction;
         public bool isPlayer;
+        protected float ShotCooldown;
+        protected Vector2f size;
+        protected Vector2f newPos;
+        public Contrail contrail;
        
         public Actor() : base("tileset", "tilesets")
         {

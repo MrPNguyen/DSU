@@ -3,7 +3,7 @@ using SFML.System;
 
 namespace Invaders.Classes;
 
-public class ScoreMenu : Menus
+public sealed class ScoreMenu : Menus
 {
     private Buttons Back;
     private Text allScores;
