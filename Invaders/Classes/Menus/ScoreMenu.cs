@@ -8,7 +8,6 @@ public class ScoreMenu : Menus
     private Buttons Back;
     private Text allScores;
     private Text Title;
-    private int placement = 1;
 
     public ScoreMenu(string textureName, string folder) : base(textureName, folder)
     {
@@ -27,7 +26,7 @@ public class ScoreMenu : Menus
         Title.OutlineThickness = 2;
         Title.Position = new Vector2f(90, 135);
         Title.DisplayedString = "High Scores";
-        List<string> scores = scene.High.LoadhighScores();
+        /*List<string> scores = scene.Score.LoadhighScores();
         foreach (string score in scores)
         {
             allScores.Font = font;
@@ -36,9 +35,9 @@ public class ScoreMenu : Menus
             allScores.OutlineThickness = 2;
             allScores.Position = new Vector2f(32, 200);
             allScores.LineSpacing = 2;
-            allScores.DisplayedString += $"{placement}. {score} \r\n";
-            placement++;
-        }
+            allScores.DisplayedString += $"{scene.Score.placement}. {score} \r\n";
+            scene.Score.placement++;
+        }*/
         
         sprite.Position = new Vector2f(10, 100);
         sprite.Scale = new Vector2f(8f, 8f);

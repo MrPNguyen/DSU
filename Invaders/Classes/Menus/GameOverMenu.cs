@@ -33,7 +33,7 @@ public class GameOverMenu : Menus
             base.Create(scene);
             scene.Spawn(PlayAgain);
             scene.Spawn(Quit);
-            scene.High.LoadhighScores();
+            scene.Score.LoadhighScores();
 
             font = scene.Assets.LoadFont("PressStart2P", "fonts");
 

@@ -56,5 +56,9 @@ public class PauseMenu : Menus
             ContinueButton.Dead = true;
             ExitButton.Dead = true;
         }
+        else
+        {
+           
+        }
     }
 }

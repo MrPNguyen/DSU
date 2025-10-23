@@ -30,8 +30,7 @@ namespace Invaders.Classes
             scene.Health.currentHealth = scene.Health.maxHealth;
             scene.Events.LoseHealth += scene.Health.OnLoseHealth;
             scene.Events.GainScore += scene.Score.OnScoreGain;
-            Console.WriteLine("Gui subscribed to GainScore");
-            scene.High.LoadhighScores();
+            scene.Score.LoadhighScores();
         }
 
         public override void Destroy(Scene scene)
@@ -39,7 +38,6 @@ namespace Invaders.Classes
             base.Destroy(scene);
             scene.Events.LoseHealth -= scene.Health.OnLoseHealth;
             scene.Events.GainScore -= scene.Score.OnScoreGain;
-            Console.WriteLine("Gui unsubscribed from GainScore");
         }
 
 

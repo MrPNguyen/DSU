@@ -41,7 +41,6 @@ namespace Invaders.Classes
         public void PublishGainScore(int amount, Scene scene)
         {
             scoreGained += amount;
-            Console.WriteLine($"Published gain score {amount}, total {scoreGained}");
         }
 
         public void PublishLoseHealth(int amount, Scene scene)

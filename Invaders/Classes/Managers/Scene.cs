@@ -13,7 +13,7 @@ namespace Invaders.Classes
         public readonly SceneLoader Loader;
         public readonly ScoreManager Score;
         public readonly HealthManager Health;
-        public readonly HighScoreManager High;
+        public HighScoreManager High;
         public bool GameLost;
         public bool PauseActive = false;
         public bool ResetGame = false;
@@ -70,6 +70,10 @@ namespace Invaders.Classes
             }
             Loader.SpawnEnemies(scene);
             Loader.GameLost(scene);
+            if (SceneManager.state == GameState.GAME)
+            {
+                Loader.ifPaused(scene);
+            }
             if (ResetGame)
             {
                 ResetGame = false;

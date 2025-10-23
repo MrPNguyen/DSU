@@ -10,6 +10,7 @@ public class Buttons : Menus
     //Buttons asset source: https://nectanebo.itch.io/menu-buttons
     //Credit to: Nectanebo 
     private string TextureName;
+    private string Folder;
     private Vector2f SpawnPosition;
     private GameState State;
     public string ButtonName;
@@ -19,6 +20,7 @@ public class Buttons : Menus
     public Buttons(string textureName, Vector2f spawnPosition, string folder, string buttonName, Vector2f buttonScale) : base(textureName, folder)
     {
         TextureName = textureName;
+        Folder = folder;
         SpawnPosition = spawnPosition;
         ButtonScale = buttonScale;
         ButtonName = buttonName;
@@ -54,7 +56,7 @@ public class Buttons : Menus
                         {
                             SceneManager.LoadScene(GameState.QUIT);
                         }
-                        else if (ButtonName == "ResumeGame")
+                        else if (ButtonName == "ResumeGame" ||  ButtonName == "PlaySquareButton")
                         {
                             scene.PauseActive = false;
                         }
@@ -72,7 +74,7 @@ public class Buttons : Menus
                         }
                         if (ButtonName == "PauseButton")
                         {
-                            if (Mouse.IsButtonPressed(Mouse.Button.Left) || Keyboard.IsKeyPressed(Keyboard.Key.Escape) && !scene.PauseActive)
+                            if (Mouse.IsButtonPressed(Mouse.Button.Left) && !scene.PauseActive)
                             {
                                 scene.Spawn(new PauseMenu("PauseMenu", "MainMenu"));
                                 scene.PauseActive = true;
@@ -91,5 +93,11 @@ public class Buttons : Menus
         {
             sprite.Color = Color.White;
         }
+    }
+
+    public void ChangePause(Scene scene, string textureName, string folder, string NewName)
+    {
+        sprite.Texture = scene.Assets.LoadTexture(textureName, folder);
+        ButtonName = NewName;
     }
 }

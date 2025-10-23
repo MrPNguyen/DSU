@@ -9,15 +9,19 @@ public class ScoreManager
 {
     public int CurrentScore;
     public int highScore;
-    public string playerName;
     private static readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScore");
     private static readonly string filePath = Path.Combine(folderPath, "HighScore.txt");
-    private static readonly string filePath2 = Path.Combine(folderPath, "HighScoreList.txt");
     private Clock ScoreClock;
+    private static readonly string folderPath2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScoreList");
+    private static readonly string filePath2 = Path.Combine(folderPath2, "HighScoreList.txt");
+    public List<HighScoreManager> Scores;
+    public int placement = 1;
+    private Text noScore;
     
     public ScoreManager()
     {
         ScoreClock = new Clock();
+        Scores = new List<HighScoreManager>();
     }
     public void SaveHighScore()
     {
@@ -57,6 +61,50 @@ public class ScoreManager
         
         reader.Dispose();
         open.Dispose();
+    }
+    
+    public void SaveHighScores()
+    {
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+        FileStream save = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+            
+        StreamWriter writer = new StreamWriter(save);
+
+        if (placement >= 8)
+        {
+            Scores.RemoveAt(Scores.Count - 1);
+        }
+        foreach (HighScoreManager score in Scores)
+        {
+            writer.WriteLine($"{score}\r\n");
+        }
+        writer.Dispose();
+        save.Dispose();
+    }
+    
+    public List<HighScoreManager> LoadhighScores()
+    {
+        List<HighScoreManager> scores = new List<HighScoreManager>();
+        if (!File.Exists(filePath))
+        {
+            return scores;
+        }
+        FileStream open = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        
+        StreamReader reader = new StreamReader(open);
+        
+        /*line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            scores.Add(line);
+        }*/
+        
+        reader.Dispose();
+        open.Dispose();
+        return scores;
     }
     
     public void OnScoreGain(int value, Scene scene)

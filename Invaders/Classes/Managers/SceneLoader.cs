@@ -8,6 +8,12 @@ namespace Invaders.Classes
         public float spawnCooldown = 0.0f;
         public float spawnRate = 0.0f;
         private bool GameOver = false;
+        private Buttons pauseButton;
+
+        public SceneLoader()
+        { 
+            pauseButton = new Buttons("Pause", new Vector2f(10, 10), "MainMenu", "PauseButton", new Vector2f(0.2f, 0.2f));
+        }
         public void LoadGame(Scene scene)
         {
             GameState SceneSwitch = SceneManager.state;
@@ -18,9 +24,9 @@ namespace Invaders.Classes
                 scene.Health.currentHealth = scene.Health.maxHealth;
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));
+                scene.Spawn(pauseButton);
                 scene.Spawn(new Enemy());
                 scene.Spawn(new Gui(scene.Score, scene.Health));
-                scene.Spawn(new Buttons("Pause", new Vector2f(10, 10), "MainMenu", "PauseButton", new Vector2f(0.2f, 0.2f)));
                 scene.Spawn(new Player(new HealthManager()));
                 scene.GameLost = false;
             }
@@ -37,7 +43,7 @@ namespace Invaders.Classes
                 scene.Clear();
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula",  "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue" ,  "Backgrounds"));
-                scene.Spawn(new NewHighScore("tileset", "tilesets"));
+                scene.Spawn(new NewHighScore("tileset", "tilesets", scene));
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.YOULOSE)
@@ -61,7 +67,7 @@ namespace Invaders.Classes
                 Environment.Exit(0);
             }
         }
-
+       
         public void Reload(Scene scene)
         {
             if (scene.GameLost)
@@ -124,6 +130,18 @@ namespace Invaders.Classes
                     return;
                 }
                 spawnRate = 50.0f;
+            }
+        }
+
+        public void ifPaused(Scene scene)
+        {
+            if (!scene.PauseActive)
+            {
+                pauseButton.ChangePause(scene, "Pause", "MainMenu", "PauseButton");
+            }
+            else
+            {
+                pauseButton.ChangePause(scene, "PlaySquare", "MainMenu", "PlaySquareButton");
             }
         }
     }

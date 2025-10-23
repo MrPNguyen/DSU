@@ -10,11 +10,13 @@ public class Menus : Entity
     private string TextureName;
     private string Folder;
     public Font font;
+    public List<Text> texts;
 
     public Menus(string textureName, string folder) : base(textureName, folder)
     {
         TextureName = textureName;
         Folder = folder;
+        texts = new List<Text>();
     }
 
     public override void Create(Scene scene)
