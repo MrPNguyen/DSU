@@ -14,8 +14,7 @@ namespace Invaders.Classes
         private float spawnPoint;
         public Vector2f direction = new Vector2f(1, 1) / MathF.Sqrt(2.0f);
         private Vector2f SpawnPos;
-        public float ShotCooldown = 0f;
-        private Explosion explosion;
+        public float ShotCooldown;
         private Vector2f newPos;
         public Contrail contrail;
         private int Direction = 2;
@@ -30,7 +29,6 @@ namespace Invaders.Classes
             sprite.Scale = new Vector2f(0.7f, 0.7f);
             sprite.Rotation = 180.0f;
             speed = 60.0f;
-            explosion = new Explosion(newPos);
             contrail = new Contrail(this);
             isPlayer = false;
             Zindex = 1;

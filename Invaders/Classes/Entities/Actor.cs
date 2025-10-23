@@ -26,11 +26,8 @@ namespace Invaders.Classes
             {
                 CollideWith(scene, found);
             }
-
-            
         }
 
         protected virtual void CollideWith(Scene s, Entity other) {}
-        
     }
 }

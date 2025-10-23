@@ -16,7 +16,7 @@ namespace Invaders.Classes
         public HighScoreManager High;
         public bool GameLost;
         public bool PauseActive = false;
-        public bool ResetGame = false;
+        public bool ResetGame;
        
         public Scene(AssetManager assets, EventManager events, SceneLoader loader, ScoreManager score, HealthManager health, HighScoreManager high)
         {
@@ -63,8 +63,6 @@ namespace Invaders.Classes
             Events.Update(this);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
-                //Console.WriteLine($"entities.Count: {entities.Count}");
-                //Console.WriteLine($"i: {i}");
                 Entity entity = entities[i];
                 entity.Update(this, deltaTime);
             }
@@ -83,8 +81,6 @@ namespace Invaders.Classes
             Loader.IncreaseSpawnRate(scene);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
-                //Console.WriteLine($"entities.Count: {entities.Count}");
-                //Console.WriteLine($"i: {i}");
                 Entity entity = entities[i];
                 if (entity.Dead == true)
                 {

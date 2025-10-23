@@ -15,8 +15,6 @@ public class ScoreManager
     private static readonly string folderPath2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HighScoreList");
     private static readonly string filePath2 = Path.Combine(folderPath2, "HighScoreList.txt");
     public List<HighScoreManager> Scores;
-    public int placement = 1;
-    private Text noScore;
     
     public ScoreManager()
     {
@@ -52,7 +50,6 @@ public class ScoreManager
         if(int.TryParse(line, out int score))
         {
             highScore = score;
-            //Console.WriteLine($"LoadHighScore: {highScore}");
         }
         else
         {
@@ -65,21 +62,25 @@ public class ScoreManager
     
     public void SaveHighScores()
     {
+        int maxPlacements = 8;
         if (!Directory.Exists(folderPath))
         {
             Directory.CreateDirectory(folderPath);
         }
-        FileStream save = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+        FileStream save = new FileStream(filePath2, FileMode.Create, FileAccess.Write);
             
         StreamWriter writer = new StreamWriter(save);
 
-        if (placement >= 8)
+        Scores = Scores.OrderByDescending(h => h.HighScores).ToList();
+        
+        if (Scores.Count > maxPlacements)
         {
             Scores.RemoveAt(Scores.Count - 1);
         }
+        
         foreach (HighScoreManager score in Scores)
         {
-            writer.WriteLine($"{score}\r\n");
+            writer.WriteLine($"{score.PlayerName}: {score.HighScores}\r\n");
         }
         writer.Dispose();
         save.Dispose();
@@ -88,22 +89,19 @@ public class ScoreManager
     public List<HighScoreManager> LoadhighScores()
     {
         List<HighScoreManager> scores = new List<HighScoreManager>();
-        if (!File.Exists(filePath))
+        if (!File.Exists(filePath2))
         {
             return scores;
         }
-        FileStream open = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-        
-        StreamReader reader = new StreamReader(open);
-        
-        /*line;
-        while ((line = reader.ReadLine()) != null)
+
+        foreach (string line in File.ReadAllLines(filePath2))
         {
-            scores.Add(line);
-        }*/
-        
-        reader.Dispose();
-        open.Dispose();
+            string[] split = line.Split(':');
+            if (split.Length == 2 && int.TryParse(split[1], out int score))
+            {
+                scores.Add(new HighScoreManager(score, split[0].Trim()));
+            }
+        }
         return scores;
     }
     

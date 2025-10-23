@@ -29,7 +29,7 @@ namespace Invaders.Classes
             sound = new SoundBuffer( scene.Assets.LoadMusic("boss", "sounds"));
             music = new Sound(sound);
             music.Play();
-            music.Volume = 40f;
+            music.Volume = 30f;
             music.Loop = true;
         }
 

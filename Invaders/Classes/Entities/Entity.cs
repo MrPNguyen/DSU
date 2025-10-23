@@ -13,8 +13,6 @@ namespace Invaders.Classes
         protected readonly Sound sounds;
         public bool Dead;
         public int Zindex;
-        public virtual bool Solid => false;
-
         protected Entity(string textureName, string folder)
         {
             this.textureName = textureName;

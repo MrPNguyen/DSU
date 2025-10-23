@@ -10,18 +10,17 @@ namespace Invaders.Classes
     {
         //Sound Source: https://kenney.nl/assets/sci-fi-sounds
         //Credit: CC0
-        public float ShotCooldown = 0f;
+        public float ShotCooldown;
         public Vector2f size;
-        private bool isInvulnerable= false;
-        private float invulnerableTimer = 0.0f;
+        private bool isInvulnerable;
+        private float invulnerableTimer;
         private const float invulnerableDuration = 2.0f; // 4 seconds
         public Color normalColor;
         public Vector2f PlayerSpawn;
         public bool ableToShoot;
         private Vector2f newPos;
         private Contrail contrail;
-        private HealthManager Health;
-        public Player(HealthManager health)
+        public Player()
         {
             sprite.TextureRect = new IntRect(192, 128, 64, 64);
             sprite.Origin = new Vector2f(32, 32);
@@ -35,7 +34,6 @@ namespace Invaders.Classes
             Zindex = 1;
             moving = true;
             isPlayer = true;
-            Health = health;
         }
 
         public override void Create(Scene scene)
@@ -134,7 +132,6 @@ namespace Invaders.Classes
                             SoundBuffer sound = new SoundBuffer( scene.Assets.LoadSound("PlayerShot", "sounds"));
                             Sound shot =  new Sound(sound);
                             shot.Play();
-                           
                             if (ShotCooldown > 0)
                             {
                                 return;
@@ -153,13 +150,6 @@ namespace Invaders.Classes
             {
                 moving = true;
             }
-
-            /*if (Health.currentHealth <= 0)
-            {
-                Dead = true;
-                Explosion explosion = new Explosion(new Vector2f(sprite.Position.X-50f, sprite.Position.Y-25));
-                scene.Spawn(explosion);
-            }*/
         }
         
         protected override void CollideWith(Scene scene, Entity e)

@@ -6,9 +6,6 @@ namespace Invaders.Classes
 {
     public class Bullet : Actor
     {
-        
-        public readonly Vector2f BulletDirection;
-        public bool enemyShot;
         public readonly float Y;
         public const float BulletSpeed = 300f;
         public Bullet(Vector2f pos, float y)

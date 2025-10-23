@@ -9,18 +9,14 @@ public class PauseMenu : Menus
 {
     //PauseMenu asset source: https://gummypopcat.itch.io/2d-ui-assets
     //Credit to gummypopcat
-    private string TextureName;
     private Buttons ExitButton;
     private Buttons ContinueButton;
-    private Actor actors;
     private Text pauseText;
     public PauseMenu(string textureName, string folder) :  base(textureName, folder)
     {
-        TextureName = textureName;
         Zindex = 1;
         ExitButton = new Buttons("Exit", new Vector2f(40, 400), "MainMenu", "ExitGame", new Vector2f(0.7f, 0.7f));
         ContinueButton = new Buttons("Resume", new Vector2f(40, 250), "MainMenu", "ResumeGame", new Vector2f(0.7f, 0.7f));
-        actors = new Actor();
         pauseText = new Text();
     }
 
@@ -51,14 +47,9 @@ public class PauseMenu : Menus
     {
         if (!scene.PauseActive)
         {
-            Console.WriteLine("Deactivated");
             Dead = true;
             ContinueButton.Dead = true;
             ExitButton.Dead = true;
-        }
-        else
-        {
-           
         }
     }
 }

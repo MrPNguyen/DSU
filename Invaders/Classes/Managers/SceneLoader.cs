@@ -5,8 +5,8 @@ namespace Invaders.Classes
 {
     public class SceneLoader
     {
-        public float spawnCooldown = 0.0f;
-        public float spawnRate = 0.0f;
+        public float spawnCooldown;
+        public float spawnRate;
         private bool GameOver = false;
         private Buttons pauseButton;
 
@@ -27,7 +27,7 @@ namespace Invaders.Classes
                 scene.Spawn(pauseButton);
                 scene.Spawn(new Enemy());
                 scene.Spawn(new Gui(scene.Score, scene.Health));
-                scene.Spawn(new Player(new HealthManager()));
+                scene.Spawn(new Player());
                 scene.GameLost = false;
             }
             else if (SceneSwitch == GameState.MAINMENU)
@@ -83,7 +83,6 @@ namespace Invaders.Classes
             scene.Score.LoadhighScore();
             if (scene.GameLost)
             {
-                //Console.WriteLine($"Your score: {scene.Score.CurrentScore} & your highscore {scene.High.highScore}");
                 if (scene.Score.CurrentScore > scene.Score.highScore)
                 {
                     SceneManager.LoadScene(GameState.NEWHIGHSCORE);

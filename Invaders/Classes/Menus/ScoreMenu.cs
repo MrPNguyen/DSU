@@ -26,19 +26,18 @@ public class ScoreMenu : Menus
         Title.OutlineThickness = 2;
         Title.Position = new Vector2f(90, 135);
         Title.DisplayedString = "High Scores";
-        /*List<string> scores = scene.Score.LoadhighScores();
-        foreach (string score in scores)
+        allScores.Font = font;
+        allScores.CharacterSize = 25;
+        allScores.OutlineColor = Color.Black;
+        allScores.OutlineThickness = 2;
+        allScores.Position = new Vector2f(32, 200);
+        allScores.LineSpacing = 2;
+
+        List<HighScoreManager> scores = scene.Score.LoadhighScores();
+        for (int i = 0; i < scores.Count; i++)
         {
-            allScores.Font = font;
-            allScores.CharacterSize = 25;
-            allScores.OutlineColor = Color.Black;
-            allScores.OutlineThickness = 2;
-            allScores.Position = new Vector2f(32, 200);
-            allScores.LineSpacing = 2;
-            allScores.DisplayedString += $"{scene.Score.placement}. {score} \r\n";
-            scene.Score.placement++;
-        }*/
-        
+            allScores.DisplayedString += $"{i+1}.{scores[i]} \r\n";
+        }
         sprite.Position = new Vector2f(10, 100);
         sprite.Scale = new Vector2f(8f, 8f);
         sprite.Color = new Color(255, 255, 255, 20);

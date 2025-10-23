@@ -18,7 +18,7 @@ namespace Invaders
                 window.Closed += (o, e) => window.Close();
                 window.SetFramerateLimit(60);
                 Clock clock = new Clock();
-                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader(), new ScoreManager(), new HealthManager(), new HighScoreManager());
+                Scene scene = new Scene(new AssetManager(), new EventManager(), new SceneLoader(), new ScoreManager(), new HealthManager(), new HighScoreManager(0, ""));
                 GameState lastState = SceneManager.state; 
                 scene.Loader.LoadGame(scene);
                 while (window.IsOpen) {
@@ -39,10 +39,3 @@ namespace Invaders
         }
     }
 }
-
-//Problems:
-//Fix saving highscores
-//Fix limit to amount of highscores possible to save
-//Fix highscores in descending order
-//Fix audio sometimes cuts when going from pause menu to main menu
-//Fix my life

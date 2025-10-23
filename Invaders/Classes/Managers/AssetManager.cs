@@ -5,10 +5,10 @@ namespace Invaders.Classes
 {
     public class AssetManager
     {
-        public static readonly string AssetPath = "assets";
         private readonly Dictionary<string, Texture> textures;
         private readonly Dictionary<string, Font> fonts;
         private readonly Dictionary<string, SoundBuffer> sounds;
+        public bool soundFinished;
 
         public AssetManager()
         {

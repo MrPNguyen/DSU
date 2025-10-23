@@ -16,7 +16,6 @@ namespace Invaders.Classes
         private Text congratsText;
         private Text displayHighScore;
         private Text typeName;
-        private string NameAndScore = "";
         private Scene Scene;
     
         public NewHighScore(string textureName, string folder, Scene scene) : base(textureName, folder)
@@ -40,7 +39,7 @@ namespace Invaders.Classes
             texts.Add(displayHighScore);
             texts.Add(typeName);
 
-            scene = Scene;
+            Scene = scene;
             
             Program.window.KeyPressed += TypeThis;
         }
@@ -111,25 +110,18 @@ namespace Invaders.Classes
             Name.DisplayedString = scene.High.PlayerName.PadRight(7, '_');
             if (Keyboard.IsKeyPressed(Keyboard.Key.Enter))
             {
-                scene.High.PlayerName = scene.High.PlayerName;
-                if (scene.Score.CurrentScore > scene.Score.highScore)
-                { 
-                    scene.Score.highScore = scene.Score.CurrentScore;
-                    scene.Score.SaveHighScore();
-                }
-
                 if (scene.High.PlayerName == "")
                 {
-                    NameAndScore = $"UNNAMED: {scene.Score.highScore}";
+                    scene.High.PlayerName = "UNNAMED";
                 }
                 else
                 {
-                    NameAndScore = $"{scene.High.PlayerName}: {scene.Score.highScore}";
-
+                    scene.High.PlayerName = scene.High.PlayerName;
                 }
-                //scene.Score.Scores.Add(NameAndScore);
-                //scene.High.Scores.Add(input.playerName, scene.Score.highScore);
-                //Figure out a different way to save highscores using List<> (and possibly struct)
+                scene.Score.highScore = scene.Score.CurrentScore;
+                HighScoreManager newScore = new HighScoreManager(scene.Score.highScore, scene.High.PlayerName);
+                scene.Score.Scores.Add(newScore);
+                scene.Score.SaveHighScore();
                 scene.Score.SaveHighScores();
                 SceneManager.LoadScene(GameState.MAINMENU);
             }

@@ -9,8 +9,6 @@ public class Buttons : Menus
 {
     //Buttons asset source: https://nectanebo.itch.io/menu-buttons
     //Credit to: Nectanebo 
-    private string TextureName;
-    private string Folder;
     private Vector2f SpawnPosition;
     private GameState State;
     public string ButtonName;
@@ -19,8 +17,6 @@ public class Buttons : Menus
 
     public Buttons(string textureName, Vector2f spawnPosition, string folder, string buttonName, Vector2f buttonScale) : base(textureName, folder)
     {
-        TextureName = textureName;
-        Folder = folder;
         SpawnPosition = spawnPosition;
         ButtonScale = buttonScale;
         ButtonName = buttonName;
