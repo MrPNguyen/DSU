@@ -1,0 +1,57 @@
+Sound SFX Credits:
+   Sound asset source: https://kenney.nl/assets/sci-fi-sounds
+   Sound asset license: CC0
+   Sound asset author: Kenney.nl
+   
+Asset Credits:
+    Background image source: https://dinvstudio.itch.io/dynamic-space-background-lite-free
+    Credit to DinVStudio
+    
+     Explosion Tilesheet Source: https://opengameart.org/content/explosion-tilesets
+     Ship Tilesheet license: CC0
+     Credit to elnineo
+     
+     Buttons asset source: https://nectanebo.itch.io/menu-buttons
+     Credit to: Nectanebo 
+     
+     PauseMenu asset source: https://gummypopcat.itch.io/2d-ui-assets
+     Credit to gummypopcat
+     
+     Ship Tilesheet Source: https://kenney.nl/assets/simple-space
+     Ship Tilesheet license: CC0
+     Ship Tilesheet Author: Kenney.nl
+     
+Music Credit:
+    Music source: https://opengameart.org/content/kind-of-boss
+    Credit to G_P, song name: Kind Of Boss
+    Music source license: CC0
+    
+Font Credit:
+    Font Source: https://fonts.google.com/specimen/Press+Start+2P
+    Font License: https://openfontlicense.org/open-font-license-official-text/
+    Credit to: cody@zone38.net
+ 
+    Font for custom buttons (High Score button & Play Again button)
+    Font Source: https://www.1001fonts.com/higher-jump-font.html
+    Font license:
+    "THIS FONT IS FREE FOR PERSONAL USE...
+     Commercial license font are available there :
+     thomasaradea@gmail.com
+     
+     
+     DOWNLOAD FULL VERSION:
+     https://www.creativefabrica.com/product/higher-jump/ref/236633/
+     
+     
+     Paypal Account for donation (support me): 
+     https://www.paypal.me/thomasaradea
+     
+     
+     INDONESIA – MOHON DIBACA:
+     Halo, buat agency, designer, youtuber, atau siapa saja yang akan menggunakan font ini untuk kebutuhan KOMERSIL, seperti sosial media yang dimonetize (youtube, instagram, facebook, twitter dll) poster film, pamphlet, promo, logo perusahaan, kaos, dan sejenisnya bisa langsung membeli licensinya disaya. Silahkan menghubungi Instagram saya/ email
+     Tenang, harga bersahabat kok.
+     terimakasih
+     
+     Menggunakan Font ini dengan lisensi "Personal Use" untuk kepentingan komersial apapun bentuknya TANPA IZIN dari kami, akan dikenakan biaya COROPORATE LICENSE."
+     
+     Font Author: thomasaradea, Lettara Studio 
