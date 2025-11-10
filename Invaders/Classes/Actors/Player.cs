@@ -92,6 +92,7 @@ namespace Invaders.Classes
                     sprite.Rotation = 360.0f;
                     moving = false;
                     direction = 2;
+                    ableToShoot = true;
                 }
                 
                 float halfWidth = size.X / 2; //splittra center för att göra hitbox "större"
@@ -122,7 +123,7 @@ namespace Invaders.Classes
                     {
                         if (ShotCooldown == 0)
                         {
-                            scene.Events.PublishSpawnBullet(newPos, -1, scene);
+                            scene.Events.PublishSpawnBullet(newPos, -1, scene, true);
                             Sound shot =  new Sound(scene.Assets.LoadSound("PlayerShot", "sounds"));
                             shot.Play();
                             if (shot.Status == SoundStatus.Stopped)
@@ -156,7 +157,7 @@ namespace Invaders.Classes
                 sprite.Color = new Color(100, 100, 100);
             }
             
-            if (e is Bullet bullet &&  bullet.Y == 1 && isInvulnerable == false)
+            if (e is Bullet bullet && !bullet.IsPlayerBullet && isInvulnerable == false)
             {
                 scene.Events.PublishLoseHealth(1, scene);
                 bullet.Dead = true;

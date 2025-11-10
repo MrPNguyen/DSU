@@ -63,9 +63,9 @@ public sealed class ScoreManager
     public void SaveHighScores()
     {
         int maxPlacements = 8;
-        if (!Directory.Exists(folderPath))
+        if (!Directory.Exists(folderPath2))
         {
-            Directory.CreateDirectory(folderPath);
+            Directory.CreateDirectory(folderPath2);
         }
         FileStream save = new FileStream(filePath2, FileMode.Create, FileAccess.Write);
             

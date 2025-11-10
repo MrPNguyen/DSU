@@ -60,7 +60,6 @@ namespace Invaders.Classes
             {
                 Loader.spawnRate = 0;
             }
-            Events.Update(this);
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Entity entity = entities[i];
@@ -122,22 +121,22 @@ namespace Invaders.Classes
             }
         }
 
-        private void SpawnBullet(Vector2f pos, float Y, Scene scene)
+        private void SpawnBullet(Vector2f pos, float Y, Scene scene, bool isPlayerBullet)
         {
-            if (Y == -1)
+            if (isPlayerBullet)
             {
                 pos.X += 1.0f;
-                Bullet bullet1 = new Bullet(pos, Y);
+                Bullet bullet1 = new Bullet(pos, Y, isPlayerBullet);
                 Spawn(bullet1);
                 
                 pos.X -= 35.0f;
-                Bullet bullet2 = new Bullet(pos, Y);
+                Bullet bullet2 = new Bullet(pos, Y, isPlayerBullet);
                 Spawn(bullet2);
             }
-            else if (Y == 1)
+            else if (!isPlayerBullet)
             {
                 pos.X += 19.0f;
-                Bullet bullet = new Bullet(pos, Y);
+                Bullet bullet = new Bullet(pos, Y, isPlayerBullet);
                 Spawn(bullet);
             }
         }

@@ -19,7 +19,7 @@ namespace Invaders.Classes
             if (SceneSwitch == GameState.GAME)
             {
                 scene.Clear();
-                scene.Score.CurrentScore = -1;
+                scene.Score.CurrentScore = 0;
                 scene.Health.currentHealth = scene.Health.maxHealth;
                 scene.Spawn(new Background(new Vector2f(0,0), "Nebula", "Backgrounds"));
                 scene.Spawn(new Background(new Vector2f(0,-800), "Nebula Blue", "Backgrounds"));

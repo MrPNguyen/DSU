@@ -57,6 +57,7 @@ public sealed class Buttons : Menus
                         }
                         else if (ButtonName == "ExitGame")
                         {
+                            scene.PauseActive = false;
                             SceneManager.LoadScene(GameState.MAINMENU);
                         }
                         else if (ButtonName == "PlayAgainButton")

@@ -74,7 +74,7 @@ namespace Invaders.Classes
                 sprite.Position = newPos;
                 if (ShotCooldown == 0)
                 {
-                    scene.Events.PublishSpawnBullet(newPos, 1, scene);
+                    scene.Events.PublishSpawnBullet(newPos, 1, scene, false);
                     Sound shot =  new Sound(scene.Assets.LoadSound("PlayerShot", "sounds"));
                     shot.Play();
                     if (ShotCooldown > 0)

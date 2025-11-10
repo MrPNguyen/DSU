@@ -237,3 +237,32 @@ C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\refint\Invaders.dl
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.pdb
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\Invaders.genruntimeconfig.cache
 C:\Users\a25phing\RiderProjects\DSU\Invaders\obj\Debug\net9.0\ref\Invaders.dll
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Nebula Blue.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Nebula Red.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Nebula.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Stars Small_1.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Stars Small_2.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Stars-Big_1_1_PC.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\Backgrounds\Stars-Big_1_2_PC.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Back.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Continue.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Exit.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\HighScoresButton.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\NewGameButton.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Pause.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\PauseMenu.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Play.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\PlayAgainButton.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\PlaySquare.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\QuitButton.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Resume.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\MainMenu\Title.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\tilesets\explosion.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\tilesets\pacman.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\tilesets\tileset.png
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\fonts\PressStart2P.ttf
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\sounds\Boom.ogg
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\sounds\EnemyShot.ogg
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\sounds\PlayerShot.ogg
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\sounds\ThrusterFire.ogg
+C:\Users\a25phing\RiderProjects\DSU\Invaders\bin\Debug\net9.0\assets\sounds\boss.wav

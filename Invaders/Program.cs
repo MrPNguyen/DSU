@@ -39,3 +39,9 @@ namespace Invaders
         }
     }
 }
+
+//Fix bullets not firing in the beginning, FIXED
+//Fix high score name crash, FIXED
+//Fix bullet detection system, FIXED
+//Fix when exiting game through pause menu and then entering back in the game and it still being frozen, FIXED
+//Fix Class Diagram

@@ -4,7 +4,7 @@ namespace Invaders.Classes
 {
     public delegate void ValueChangedEvent(int value, Scene scene);
 
-    public delegate void PositionChangedEvent(Vector2f pos, float Y, Scene scene);
+    public delegate void PositionChangedEvent(Vector2f pos, float Y, Scene scene, bool isPlayerBullet);
     
     public sealed class EventManager
     {
@@ -12,47 +12,41 @@ namespace Invaders.Classes
         private int healthLost;
         private Vector2f originalposition;
         private float y;
+        private bool isPlayerBullet;
 
         public event ValueChangedEvent GainScore;
         public event ValueChangedEvent LoseHealth;
         public event PositionChangedEvent SpawnBullet;
-
-
-        public void Update(Scene scene)
+        public void PublishGainScore(int amount, Scene scene)
         {
+            scoreGained += amount;
             if (scoreGained != 0)
             {
                 GainScore?.Invoke(scoreGained, scene);
                 scoreGained = 0;
             }
-            if (healthLost != 0)
-            { 
-                LoseHealth?.Invoke(healthLost, scene); 
-                healthLost = 0;
-            }
-
-            if (y != 0)
-            {
-                SpawnBullet?.Invoke(originalposition, y, scene);
-                y = 0;
-            }
-            
-        }
-        public void PublishGainScore(int amount, Scene scene)
-        {
-            scoreGained += amount;
         }
 
         public void PublishLoseHealth(int amount, Scene scene)
         {
             healthLost += amount;
-            
+            if (healthLost != 0)
+            { 
+                LoseHealth?.Invoke(healthLost, scene); 
+                healthLost = 0;
+            }
         }
 
-        public void PublishSpawnBullet(Vector2f pos, float Y, Scene scene)
+        public void PublishSpawnBullet(Vector2f pos, float Y, Scene scene, bool IsPlayerBullet)
         {
             originalposition = pos;
             y = Y;
+            isPlayerBullet = IsPlayerBullet;
+            if (y != 0)
+            {
+                SpawnBullet?.Invoke(originalposition, y, scene, isPlayerBullet);
+                y = 0;
+            }
         }
     }
 }

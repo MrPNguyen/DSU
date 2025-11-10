@@ -11,37 +11,44 @@
     <PackageReference Include="CSFML" Version="2.5.0" />
     <PackageReference Include="SFML.Net" Version="2.5.0" />
   </ItemGroup>
-
+    
     <ItemGroup>
-        <None Remove="assets/*.txt" />
-        <EmbeddedResource Include="assets/*.txt">
+        <None Remove="assets/Backgrounds/*.png" />
+        <EmbeddedResource Include="assets/Backgrounds/*.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="assets/*.png" />
-        <EmbeddedResource Include="assets/*.png">
+        <None Remove="assets/MainMenu/*.png" />
+        <EmbeddedResource Include="assets/MainMenu/*.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="assets/*.ttf" />
-        <EmbeddedResource Include="assets/*.ttf">
+        <None Remove="assets/tilesets/*.png" />
+        <EmbeddedResource Include="assets/tilesets/*.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Remove="assets/fonts/*.ttf" />
+        <EmbeddedResource Include="assets/fonts/*.ttf">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="assets/*.ogg" />
-        <EmbeddedResource Include="assets/*.ogg">
+        <None Remove="assets/sounds/*.ogg" />
+        <EmbeddedResource Include="assets/sounds/*.ogg">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
     </ItemGroup>
     <ItemGroup>
-        <None Remove="assets/*.wav" />
-        <EmbeddedResource Include="assets/*.wav">
+        <None Remove="assets/sounds/*.wav" />
+        <EmbeddedResource Include="assets/sounds/*.wav">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </EmbeddedResource>
     </ItemGroup>
