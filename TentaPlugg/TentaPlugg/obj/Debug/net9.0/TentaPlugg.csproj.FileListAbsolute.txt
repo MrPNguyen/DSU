@@ -1,0 +1,14 @@
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.AssemblyInfoInputs.cache
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.AssemblyInfo.cs
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.csproj.CoreCompileInputs.cache
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\bin\Debug\net9.0\TentaPlugg.exe
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\bin\Debug\net9.0\TentaPlugg.deps.json
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\bin\Debug\net9.0\TentaPlugg.runtimeconfig.json
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\bin\Debug\net9.0\TentaPlugg.dll
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\bin\Debug\net9.0\TentaPlugg.pdb
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.dll
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\refint\TentaPlugg.dll
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.pdb
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\TentaPlugg.genruntimeconfig.cache
+C:\Users\a25phing\RiderProjects\TentaPlugg\TentaPlugg\obj\Debug\net9.0\ref\TentaPlugg.dll

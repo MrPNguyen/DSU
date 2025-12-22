@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\a25phing\\RiderProjects\\DSU\\Invaders\\Invaders.csproj": {}
+    "C:\\Users\\a25phing\\RiderProjects\\TentaPlugg\\TentaPlugg\\TentaPlugg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\a25phing\\RiderProjects\\DSU\\Invaders\\Invaders.csproj": {
+    "C:\\Users\\a25phing\\RiderProjects\\TentaPlugg\\TentaPlugg\\TentaPlugg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\a25phing\\RiderProjects\\DSU\\Invaders\\Invaders.csproj",
-        "projectName": "Invaders",
-        "projectPath": "C:\\Users\\a25phing\\RiderProjects\\DSU\\Invaders\\Invaders.csproj",
+        "projectUniqueName": "C:\\Users\\a25phing\\RiderProjects\\TentaPlugg\\TentaPlugg\\TentaPlugg.csproj",
+        "projectName": "TentaPlugg",
+        "projectPath": "C:\\Users\\a25phing\\RiderProjects\\TentaPlugg\\TentaPlugg\\TentaPlugg.csproj",
         "packagesPath": "C:\\Users\\a25phing\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\a25phing\\RiderProjects\\DSU\\Invaders\\obj\\",
+        "outputPath": "C:\\Users\\a25phing\\RiderProjects\\TentaPlugg\\TentaPlugg\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\a25phing\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,16 +43,6 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "dependencies": {
-            "CSFML": {
-              "target": "Package",
-              "version": "[2.5.0, )"
-            },
-            "SFML.Net": {
-              "target": "Package",
-              "version": "[2.5.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
